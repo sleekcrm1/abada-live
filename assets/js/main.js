@@ -33,16 +33,6 @@
     root.setAttribute("data-theme", autoThemeForNow());
   }
 
-  function updateThemeIcons() {
-    const isDark = root.getAttribute("data-theme") === "dark";
-    const sunIcon = document.querySelector(".sun-icon");
-    const moonIcon = document.querySelector(".moon-icon");
-    if (sunIcon) sunIcon.style.display = isDark ? "block" : "none";
-    if (moonIcon) moonIcon.style.display = isDark ? "none" : "block";
-  }
-
-  updateThemeIcons();
-
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-theme-toggle]");
     if (!btn) return;
@@ -50,7 +40,6 @@
     const next = current === "dark" ? "light" : "dark";
     root.setAttribute("data-theme", next);
     localStorage.setItem(THEME_KEY, next); // explicit user choice overrides auto-detection from now on
-    updateThemeIcons();
   });
 
   /* ---------- Scroll reveal animations ---------- */
@@ -97,6 +86,75 @@
       { passive: true }
     );
   }
+
+  /* ---------- Scroll journey (sticky story-card flow, e.g. home page boxes) ----------
+     Works for any .scroll-journey section on any page — length/segment count
+     auto-adapts to however many .story-card elements are actually present,
+     so this never needs hand-tuned breakpoints per section. */
+  const journeySections = Array.from(document.querySelectorAll(".scroll-journey"));
+  if (journeySections.length) {
+    const journeys = journeySections.map((section) => ({
+      section,
+      cards: Array.from(section.querySelectorAll(".story-card")),
+      nodes: Array.from(section.querySelectorAll(".scroll-node")),
+    }));
+
+    let journeyTicking = false;
+    function updateJourneys() {
+      journeys.forEach(({ section, cards, nodes }) => {
+        const n = cards.length || 1;
+        const rect = section.getBoundingClientRect();
+        const scrollable = section.offsetHeight - window.innerHeight;
+        const progress = scrollable > 0 ? Math.max(0, Math.min(1, -rect.top / scrollable)) : 0;
+        section.style.setProperty("--scroll-p", progress.toFixed(4));
+
+        const activeIndex = progress <= 0 ? 0 : progress >= 1 ? n - 1 : Math.min(n - 1, Math.floor(progress * n));
+        cards.forEach((card, i) => card.classList.toggle("active", i === activeIndex));
+        nodes.forEach((node, i) => node.classList.toggle("active", i <= activeIndex));
+      });
+      journeyTicking = false;
+    }
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!journeyTicking) {
+          window.requestAnimationFrame(updateJourneys);
+          journeyTicking = true;
+        }
+      },
+      { passive: true }
+    );
+    updateJourneys();
+  }
+
+  /* ---------- Achievements slider dots ---------- */
+  const achvSlider = document.querySelector("[data-achv-slider]");
+  const achvDotsWrap = document.querySelector("[data-achv-dots]");
+  if (achvSlider && achvDotsWrap) {
+    const dots = Array.from(achvDotsWrap.querySelectorAll(".achv-dot"));
+    const frames = Array.from(achvSlider.querySelectorAll(".achv-frame"));
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        frames[i]?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      });
+    });
+    if ("IntersectionObserver" in window) {
+      const dotIo = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const idx = frames.indexOf(entry.target);
+              dots.forEach((d) => d.setAttribute("aria-current", "false"));
+              if (dots[idx]) dots[idx].setAttribute("aria-current", "true");
+            }
+          });
+        },
+        { root: achvSlider, threshold: 0.6 }
+      );
+      frames.forEach((f) => dotIo.observe(f));
+    }
+  }
+
   document.addEventListener("click", (e) => {
     const toggle = e.target.closest("[data-nav-toggle]");
     const nav = document.querySelector("[data-nav]");
@@ -136,15 +194,28 @@
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const status = form.querySelector("[data-form-status]");
-      const name = form.querySelector("#name")?.value?.trim();
-      const email = form.querySelector("#email")?.value?.trim();
-      const message = form.querySelector("#message")?.value?.trim();
-      if (!name || !email || !message) {
+      const val = (fieldName) => form.querySelector(`[name="${fieldName}"]`)?.value?.trim() || "";
+      const name = val("name");
+      const org = val("org");
+      const phone = val("phone");
+      const email = val("email");
+      const message = val("message");
+
+      // Minimum requirement: a name plus at least one way to respond (email or phone).
+      if (!name || (!email && !phone)) {
         if (status) status.textContent = form.dataset.msgIncomplete || "Please fill in all fields.";
         return;
       }
-      const subject = encodeURIComponent(`Website contact from ${name}`);
-      const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+
+      const subjectPrefix = form.dataset.subjectPrefix || "Website contact";
+      const subject = encodeURIComponent(`${subjectPrefix} from ${name}`);
+      const lines = [];
+      if (org) lines.push(`Organization: ${org}`);
+      if (phone) lines.push(`Phone: ${phone}`);
+      if (email) lines.push(`Email: ${email}`);
+      if (message) lines.push(`\n${message}`);
+      lines.push(`\n— ${name}`);
+      const body = encodeURIComponent(lines.join("\n"));
       window.location.href = `mailto:${form.dataset.mailto}?subject=${subject}&body=${body}`;
       if (status) status.textContent = form.dataset.msgSent || "Opening your email app…";
     });

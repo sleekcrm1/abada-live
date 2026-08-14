@@ -106,6 +106,27 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://abadacapoeiraisrael.org.il/he/gallery/" />
   </url>
   <url>
+    <loc>https://abadacapoeiraisrael.org.il/he/corporate/</loc>
+    <xhtml:link rel="alternate" hreflang="he-IL" href="https://abadacapoeiraisrael.org.il/he/corporate/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abadacapoeiraisrael.org.il/en/corporate/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://abadacapoeiraisrael.org.il/pt/corporate/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abadacapoeiraisrael.org.il/he/corporate/" />
+  </url>
+  <url>
+    <loc>https://abadacapoeiraisrael.org.il/en/corporate/</loc>
+    <xhtml:link rel="alternate" hreflang="he-IL" href="https://abadacapoeiraisrael.org.il/he/corporate/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abadacapoeiraisrael.org.il/en/corporate/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://abadacapoeiraisrael.org.il/pt/corporate/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abadacapoeiraisrael.org.il/he/corporate/" />
+  </url>
+  <url>
+    <loc>https://abadacapoeiraisrael.org.il/pt/corporate/</loc>
+    <xhtml:link rel="alternate" hreflang="he-IL" href="https://abadacapoeiraisrael.org.il/he/corporate/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://abadacapoeiraisrael.org.il/en/corporate/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://abadacapoeiraisrael.org.il/pt/corporate/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abadacapoeiraisrael.org.il/he/corporate/" />
+  </url>
+  <url>
     <loc>https://abadacapoeiraisrael.org.il/he/contact/</loc>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://abadacapoeiraisrael.org.il/he/contact/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://abadacapoeiraisrael.org.il/en/contact/" />
