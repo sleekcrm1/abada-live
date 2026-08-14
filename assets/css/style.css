@@ -40,12 +40,69 @@
 }
 
 :root[data-theme="dark"] {
-  --bg: #1A1F2E;
-  --bg-elevated: #242B3A;
+  --bg: #0F1420;
+  --bg-elevated: #1A2130;
   --fg: #F0EBE0;
-  --fg-soft: #B8AFA0;
-  --line: rgba(240, 235, 224, 0.15);
+  --fg-soft: #A8B0C0;
+  --line: rgba(212, 175, 55, 0.16);
+  --shadow-1: 0 1px 3px rgba(0,0,0,.4);
+  --shadow-2: 0 8px 32px rgba(212,175,55,.12), 0 8px 24px rgba(0,0,0,.5);
   color-scheme: dark;
+}
+
+/* Futuristic glow accents — dark mode only */
+[data-theme="dark"] body {
+  background:
+    radial-gradient(60% 40% at 15% 0%, rgba(212,175,55,.06), transparent 60%),
+    radial-gradient(50% 35% at 100% 10%, rgba(122,139,110,.08), transparent 60%),
+    var(--bg);
+}
+[data-theme="dark"] .card {
+  box-shadow: 0 0 0 1px rgba(212,175,55,.06), var(--shadow-1);
+}
+[data-theme="dark"] .card:hover {
+  box-shadow: 0 0 24px rgba(212,175,55,.18), 0 0 0 1px rgba(212,175,55,.35), var(--shadow-2);
+  border-color: rgba(212,175,55,.4);
+}
+[data-theme="dark"] .btn-primary {
+  box-shadow: 0 0 18px rgba(212,175,55,.35), var(--shadow-1);
+}
+[data-theme="dark"] .btn-primary:hover {
+  box-shadow: 0 0 28px rgba(212,175,55,.55), var(--shadow-2);
+}
+[data-theme="dark"] .icon-btn:hover {
+  box-shadow: 0 0 14px rgba(212,175,55,.4);
+  border-color: rgba(212,175,55,.5);
+}
+[data-theme="dark"] .belt-swatch {
+  box-shadow: 0 0 10px rgba(212,175,55,.15), var(--shadow-1);
+}
+[data-theme="dark"] .site-header {
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  border-bottom-color: rgba(212,175,55,.18);
+}
+[data-theme="dark"] .site-header.scrolled {
+  box-shadow: 0 4px 24px rgba(212,175,55,.1), var(--shadow-2);
+}
+[data-theme="dark"] .hero-eyebrow,
+[data-theme="dark"] .page-header .hero-eyebrow {
+  box-shadow: 0 0 16px rgba(212,175,55,.25);
+}
+[data-theme="dark"] .filter-chip[aria-pressed="true"] {
+  box-shadow: 0 0 16px rgba(212,175,55,.4);
+}
+[data-theme="dark"] .stat b {
+  text-shadow: 0 0 18px rgba(212,175,55,.5);
+}
+
+/* Elegant Hebrew typography — Frank Ruhl Libre for display, Rubik for body */
+html[lang="he"] {
+  --font-display: "Frank Ruhl Libre", "Fraunces", Georgia, serif;
+  --font-body: "Rubik", "Assistant", system-ui, -apple-system, sans-serif;
+}
+html[lang="he"] h1, html[lang="he"] h2, html[lang="he"] h3,
+html[lang="he"] .brand, html[lang="he"] .btn {
+  letter-spacing: 0;
 }
 
 /* ========== RESET & BASE ========== */
@@ -70,6 +127,51 @@ ul { margin: 0; padding: 0; list-style: none; }
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 600; line-height: 1.2; margin: 0 0 0.5em; }
 p { margin: 0 0 1em; }
 button { font-family: inherit; cursor: pointer; }
+
+/* ========== SCROLL-REVEAL ("alive" entrance animations) ========== */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(.22,.61,.36,1), transform 0.7s cubic-bezier(.22,.61,.36,1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ========== HOVER / INTERACTIVE MICRO-EFFECTS ========== */
+.card {
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+}
+
+.trainer-photo img,
+.masonry img {
+  transition: transform 0.5s ease;
+}
+.trainer-card:hover .trainer-photo img,
+.masonry figure:hover img {
+  transform: scale(1.06);
+}
+
+.btn { transition: all 0.2s ease, transform 0.15s ease; }
+.btn-primary:hover { transform: translateY(-2px); }
+.btn-outline:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+.icon-btn { transition: all 0.2s ease, transform 0.2s ease; }
+.icon-btn:hover { transform: translateY(-2px) rotate(-4deg); }
+
+.nav-primary a { position: relative; transition: color 0.2s ease; }
+.nav-primary a:hover { color: var(--accent); }
 
 /* ========== CONTAINER ========== */
 .container {
@@ -101,6 +203,12 @@ button { font-family: inherit; cursor: pointer; }
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
   padding-block: 12px;
+  transition: box-shadow 0.3s ease, padding-block 0.3s ease;
+}
+
+.site-header.scrolled {
+  box-shadow: var(--shadow-2);
+  padding-block: 9px;
 }
 
 .site-header .container {
@@ -113,9 +221,9 @@ button { font-family: inherit; cursor: pointer; }
 .brand {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: 1.02rem;
   font-weight: 700;
   color: var(--color-navy);
   min-width: 0;
@@ -123,15 +231,22 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .brand img {
-  width: 36px;
-  height: 36px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
 }
 
 .brand span {
-  display: none;
+  display: inline;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+@media (max-width: 380px) {
+  .brand span { font-size: 0.85rem; }
+  .brand img { width: 38px; height: 38px; }
 }
 
 .nav-primary {
@@ -354,6 +469,27 @@ button { font-family: inherit; cursor: pointer; }
   margin-top: 18px;
 }
 
+/* ========== PAGE HEADER (interior pages: about/trainers/events/gallery/contact) ========== */
+.page-header {
+  position: relative;
+  overflow: hidden;
+  padding-block: 40px 36px;
+  background: linear-gradient(135deg, var(--color-navy) 0%, color-mix(in srgb, var(--color-navy) 82%, var(--color-brown)) 100%);
+  color: var(--color-cream);
+}
+
+.page-header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 90% at 85% 0%, rgba(212,175,55,.16), transparent 60%);
+  pointer-events: none;
+}
+
+.page-header .hero-eyebrow { margin-bottom: 12px; }
+.page-header h1 { color: var(--color-cream); font-size: clamp(1.5rem, 5.5vw, 2.1rem); margin-bottom: 8px; }
+.page-header p.lead { color: rgba(245, 240, 232, 0.88); font-size: 0.92rem; max-width: 62ch; }
+
 /* ========== BUTTONS ========== */
 .btn {
   display: inline-flex;
@@ -561,35 +697,41 @@ button { font-family: inherit; cursor: pointer; }
 .contact-info-card .row:first-of-type { border-top: none; }
 
 /* ========== FOOTER — MOBILE ========== */
-.site-footer { background: var(--color-navy); color: rgba(245, 240, 232, 0.7); padding-block: 40px 20px; margin-top: 32px; }
-.footer-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 28px; }
-.site-footer h4 { color: var(--color-cream); font-size: 0.90rem; margin-bottom: 10px; }
-.site-footer a { opacity: 0.8; display: block; padding-block: 4px; font-size: 0.88rem; transition: opacity 0.2s; }
+.site-footer { background: var(--color-navy); color: rgba(245, 240, 232, 0.7); padding-block: 28px 16px; margin-top: 32px; }
+.footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 14px; margin-bottom: 18px; }
+.footer-grid > div:first-child { grid-column: 1 / -1; }
+.site-footer h4 { color: var(--color-cream); font-size: 0.80rem; margin-bottom: 6px; }
+.site-footer a { opacity: 0.8; display: block; padding-block: 3px; font-size: 0.80rem; transition: opacity 0.2s; }
 .site-footer a:hover { opacity: 1; color: var(--color-gold-light); }
+.site-footer .brand { font-size: 0.92rem; }
+.site-footer .brand img { width: 34px; height: 34px; }
+.site-footer p { font-size: 0.80rem !important; margin-bottom: 10px !important; }
 
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 16px;
+  padding-top: 12px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
-  font-size: 0.78rem;
+  gap: 6px;
+  font-size: 0.70rem;
   opacity: 0.6;
 }
 
-.social-row { display: flex; gap: 8px; margin-top: 10px; }
+.social-row { display: flex; gap: 8px; margin-top: 8px; }
 .social-row a {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.2);
   display: grid;
   place-items: center;
   padding: 0;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 700;
+  transition: all 0.2s ease;
 }
+.social-row a:hover { border-color: var(--color-gold-light); color: var(--color-gold-light); transform: translateY(-2px); }
 
 /* ========== STATS ========== */
 .stats-strip { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; text-align: center; }
@@ -619,7 +761,6 @@ button { font-family: inherit; cursor: pointer; }
 @media (min-width: 640px) {
   .container { padding: 0 24px; }
   .site-header .container { gap: 16px; }
-  .brand span { display: inline; }
   
   .nav-primary { display: flex; flex-direction: row; position: static; width: auto; background: transparent; border-bottom: none; gap: 24px; }
   .nav-primary a { padding: 0; border-bottom: none; border-radius: 4px; padding-block: 4px; }
@@ -635,6 +776,10 @@ button { font-family: inherit; cursor: pointer; }
   .hero-logo-mobile { display: none; }
   .hero-inner { padding-block: 80px; }
   .hero h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
+
+  .page-header { padding-block: 56px 48px; }
+  .page-header h1 { font-size: clamp(1.9rem, 3.6vw, 2.5rem); }
+  .page-header p.lead { font-size: 1rem; }
   
   .grid-2 { grid-template-columns: repeat(2, 1fr); }
   .grid-3 { grid-template-columns: repeat(3, 1fr); }
