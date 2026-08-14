@@ -72,7 +72,7 @@
     revealEls.forEach((el) => el.classList.add("in-view"));
   }
 
-  /* ---------- Header shadow on scroll (subtle "alive" feedback) ---------- */
+  /* ---------- Header shadow + hide-on-scroll-down ---------- */
   const siteHeader = document.querySelector(".site-header");
   if (siteHeader) {
     let lastY = window.scrollY;
@@ -81,6 +81,18 @@
       () => {
         const y = window.scrollY;
         siteHeader.classList.toggle("scrolled", y > 8);
+
+        // Hide while scrolling down past the header's own height, show again
+        // on any upward scroll. Ignore tiny jitters and never hide while a
+        // mobile nav dropdown is open.
+        const navOpen = document.querySelector("[data-nav]")?.classList.contains("open");
+        const delta = y - lastY;
+        if (!navOpen && y > siteHeader.offsetHeight) {
+          if (delta > 4) siteHeader.classList.add("header-hidden");
+          else if (delta < -4) siteHeader.classList.remove("header-hidden");
+        } else {
+          siteHeader.classList.remove("header-hidden");
+        }
         lastY = y;
       },
       { passive: true }
@@ -97,11 +109,12 @@
       section,
       cards: Array.from(section.querySelectorAll(".story-card")),
       nodes: Array.from(section.querySelectorAll(".scroll-node")),
+      bgImages: Array.from(section.querySelectorAll(".journey-bg-img")),
     }));
 
     let journeyTicking = false;
     function updateJourneys() {
-      journeys.forEach(({ section, cards, nodes }) => {
+      journeys.forEach(({ section, cards, nodes, bgImages }) => {
         const n = cards.length || 1;
         const rect = section.getBoundingClientRect();
         const scrollable = section.offsetHeight - window.innerHeight;
@@ -111,6 +124,7 @@
         const activeIndex = progress <= 0 ? 0 : progress >= 1 ? n - 1 : Math.min(n - 1, Math.floor(progress * n));
         cards.forEach((card, i) => card.classList.toggle("active", i === activeIndex));
         nodes.forEach((node, i) => node.classList.toggle("active", i <= activeIndex));
+        bgImages.forEach((img, i) => img.classList.toggle("active", i === activeIndex));
       });
       journeyTicking = false;
     }
