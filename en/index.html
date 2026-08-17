@@ -38,21 +38,11 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- Global atmospheric background — fixed, decorative, site-wide.
-     Rotating wireframe globe + moving grid react to overall page scroll;
-     starfield/planets/asteroids show in dark mode, drifting clouds +
-     a subtle eclipse pulse show in light mode. Purely CSS/JS, no images. -->
-<div class="atmo-grid" aria-hidden="true"></div>
-<div class="atmo-globe-wrap" aria-hidden="true"><div class="atmo-globe"></div></div>
-<div class="atmo-eclipse" aria-hidden="true"></div>
-<div class="atmo-stars fade-on-scroll" aria-hidden="true">
-  <div class="atmo-planet atmo-planet-1"></div>
-  <div class="atmo-planet atmo-planet-2"></div>
-  <div class="atmo-planet atmo-planet-3"></div>
-  <div class="atmo-asteroid atmo-asteroid-1"></div>
-  <div class="atmo-asteroid atmo-asteroid-2"></div>
-</div>
-<div class="atmo-clouds fade-on-scroll" aria-hidden="true">
+<!-- Background ambience — fixed, decorative, site-wide, no scroll JS.
+     Just the day/night effect: drifting clouds in light mode, a faint
+     twinkling starfield in dark mode. -->
+<div class="atmo-stars" aria-hidden="true"></div>
+<div class="atmo-clouds" aria-hidden="true">
   <div class="atmo-cloud atmo-cloud-1"></div>
   <div class="atmo-cloud atmo-cloud-2"></div>
   <div class="atmo-cloud atmo-cloud-3"></div>
@@ -121,7 +111,7 @@
       <source src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/Main-videos.mp4" type="video/mp4">
     </video>
     <div class="hero-mobile-bg" style="background-image:url('https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/upscalemedia-transformed-1-scaled.png');"></div>
-    <div class="celestial-container fade-on-scroll" aria-hidden="true">
+    <div class="celestial-container" aria-hidden="true">
       <div class="sun"></div>
       <div class="moon"></div>
     </div>
@@ -174,66 +164,47 @@
       <h2>A martial art that's also dance, music and living history</h2>
       <p>Capoeira is a unique Brazilian martial art that emerged roughly 400 years ago, developed by enslaved Africans who wove dance and music into their self-defense training to disguise it. Today it's recognized by UNESCO as part of humanity's intangible cultural heritage.</p>
     </div>
+    <div class="grid grid-3">
+      
+      <div class="card">
+        <div class="icon">🥋</div>
+        <h3>Flowing movement</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">Kicks, evasions and acrobatic spins in place of direct confrontation.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">🥁</div>
+        <h3>Live music</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">Berimbau, atabaque and pandeiro accompany every class and set its rhythm.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">⭕</div>
+        <h3>The roda</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">The circle of students where two players carry on a 'conversation' of movement.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">🌍</div>
+        <h3>Certified Brazilian lineage</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">ABADÁ — one of the world's leading capoeira federations — with internationally experienced, certified instructors.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">🤝</div>
+        <h3>Open to everyone</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">Kids, teens, adults and people with disabilities all find a home in our groups.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">🏆</div>
+        <h3>Competitive results</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">ABADÁ Israel's national teams represent us proudly at international events and bring home strong results.</p>
+      </div>
+      
+    </div>
   </div>
 </section>
-
-<div class="stack-container">
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">01</div>
-      <h2 class="reveal-item delay-2">🥋 Flowing movement</h2>
-      <p class="reveal-item delay-3">Kicks, evasions and acrobatic spins in place of direct confrontation.</p>
-    </div>
-  </section>
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">02</div>
-      <h2 class="reveal-item delay-2">🥁 Live music</h2>
-      <p class="reveal-item delay-3">Berimbau, atabaque and pandeiro accompany every class and set its rhythm.</p>
-    </div>
-  </section>
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">03</div>
-      <h2 class="reveal-item delay-2">⭕ The roda</h2>
-      <p class="reveal-item delay-3">The circle of students where two players carry on a 'conversation' of movement.</p>
-    </div>
-  </section>
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">04</div>
-      <h2 class="reveal-item delay-2">🌍 Certified Brazilian lineage</h2>
-      <p class="reveal-item delay-3">ABADÁ — one of the world's leading capoeira federations — with internationally experienced, certified instructors.</p>
-    </div>
-  </section>
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">05</div>
-      <h2 class="reveal-item delay-2">🤝 Open to everyone</h2>
-      <p class="reveal-item delay-3">Kids, teens, adults and people with disabilities all find a home in our groups.</p>
-    </div>
-  </section>
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">06</div>
-      <h2 class="reveal-item delay-2">🏆 Competitive results</h2>
-      <p class="reveal-item delay-3">ABADÁ Israel's national teams represent us proudly at international events and bring home strong results.</p>
-    </div>
-  </section>
-  
-</div>
 
 <section class="section">
   <div class="container">

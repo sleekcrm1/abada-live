@@ -38,21 +38,11 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- Global atmospheric background — fixed, decorative, site-wide.
-     Rotating wireframe globe + moving grid react to overall page scroll;
-     starfield/planets/asteroids show in dark mode, drifting clouds +
-     a subtle eclipse pulse show in light mode. Purely CSS/JS, no images. -->
-<div class="atmo-grid" aria-hidden="true"></div>
-<div class="atmo-globe-wrap" aria-hidden="true"><div class="atmo-globe"></div></div>
-<div class="atmo-eclipse" aria-hidden="true"></div>
-<div class="atmo-stars fade-on-scroll" aria-hidden="true">
-  <div class="atmo-planet atmo-planet-1"></div>
-  <div class="atmo-planet atmo-planet-2"></div>
-  <div class="atmo-planet atmo-planet-3"></div>
-  <div class="atmo-asteroid atmo-asteroid-1"></div>
-  <div class="atmo-asteroid atmo-asteroid-2"></div>
-</div>
-<div class="atmo-clouds fade-on-scroll" aria-hidden="true">
+<!-- Background ambience — fixed, decorative, site-wide, no scroll JS.
+     Just the day/night effect: drifting clouds in light mode, a faint
+     twinkling starfield in dark mode. -->
+<div class="atmo-stars" aria-hidden="true"></div>
+<div class="atmo-clouds" aria-hidden="true">
   <div class="atmo-cloud atmo-cloud-1"></div>
   <div class="atmo-cloud atmo-cloud-2"></div>
   <div class="atmo-cloud atmo-cloud-3"></div>
@@ -173,75 +163,53 @@
       <h2>Flexibility is a skill you can practice</h2>
       <p>The activity creates a dynamic environment where participants are repeatedly required to observe, respond, adjust and choose.</p>
     </div>
+    <div class="grid grid-3">
+      
+      <div class="card">
+        <div class="icon">🧠</div>
+        <h3>Mental flexibility</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">Changing direction when the planned solution no longer fits reality.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">🎭</div>
+        <h3>Improvisation</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">Acting even when there's no ready-made script.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">💡</div>
+        <h3>Creative thinking</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">Discovering that the same situation has more than one solution.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h3>Real-time decision making</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">Reading the situation, choosing, and responding.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">👂</div>
+        <h3>Communication & listening</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">Staying attentive to the person in front of you and adjusting your action accordingly.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">🌊</div>
+        <h3>Functioning under change</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">Continuing to act even as the pace rises, conditions shift, and not everything is in your control.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">🤝</div>
+        <h3>Teamwork</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">Discovering that the way I act affects the person with me — and vice versa.</p>
+      </div>
+      
+    </div>
   </div>
 </section>
-
-<div class="stack-container">
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">01</div>
-      <h2 class="reveal-item delay-2">🧠 Mental flexibility</h2>
-      <p class="reveal-item delay-3">Changing direction when the planned solution no longer fits reality.</p>
-    </div>
-  </section>
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">02</div>
-      <h2 class="reveal-item delay-2">🎭 Improvisation</h2>
-      <p class="reveal-item delay-3">Acting even when there's no ready-made script.</p>
-    </div>
-  </section>
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">03</div>
-      <h2 class="reveal-item delay-2">💡 Creative thinking</h2>
-      <p class="reveal-item delay-3">Discovering that the same situation has more than one solution.</p>
-    </div>
-  </section>
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">04</div>
-      <h2 class="reveal-item delay-2">⚡ Real-time decision making</h2>
-      <p class="reveal-item delay-3">Reading the situation, choosing, and responding.</p>
-    </div>
-  </section>
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">05</div>
-      <h2 class="reveal-item delay-2">👂 Communication & listening</h2>
-      <p class="reveal-item delay-3">Staying attentive to the person in front of you and adjusting your action accordingly.</p>
-    </div>
-  </section>
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">06</div>
-      <h2 class="reveal-item delay-2">🌊 Functioning under change</h2>
-      <p class="reveal-item delay-3">Continuing to act even as the pace rises, conditions shift, and not everything is in your control.</p>
-    </div>
-  </section>
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">07</div>
-      <h2 class="reveal-item delay-2">🤝 Teamwork</h2>
-      <p class="reveal-item delay-3">Discovering that the way I act affects the person with me — and vice versa.</p>
-    </div>
-  </section>
-  
-</div>
 
 <section class="section">
   <div class="container" style="max-width:800px;">

@@ -3,28 +3,6 @@
 (function () {
   "use strict";
 
-  /* ---------- Global scroll progress (drives the atmospheric background:
-     rotating globe, moving grid, fade-out hero elements) ---------- */
-  let atmoTicking = false;
-  function updateAtmoScrollProgress() {
-    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollY = window.scrollY || document.documentElement.scrollTop;
-    const progress = scrollableHeight > 0 ? scrollY / scrollableHeight : 0;
-    document.body.style.setProperty("--scroll-p", progress.toFixed(4));
-    atmoTicking = false;
-  }
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (!atmoTicking) {
-        window.requestAnimationFrame(updateAtmoScrollProgress);
-        atmoTicking = true;
-      }
-    },
-    { passive: true }
-  );
-  updateAtmoScrollProgress();
-
   /* ---------- Theme (light/dark) with sun/moon icons ---------- */
   const THEME_KEY = "aci-theme";
   const root = document.documentElement;
@@ -119,28 +97,6 @@
       },
       { passive: true }
     );
-  }
-
-  /* ---------- Sticky peeling stack (home/about/corporate box flows) ----------
-     Each .stack-layer gets an "is-visible" class once it's ~50% into view,
-     which triggers its .reveal-item children (badge/heading/body) to fade
-     and slide in with a stagger. Works for any number of layers on any
-     page — nothing here is hardcoded to a specific count. */
-  const stackLayers = document.querySelectorAll(".stack-layer");
-  if (stackLayers.length) {
-    if ("IntersectionObserver" in window) {
-      const stackObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) entry.target.classList.add("is-visible");
-          });
-        },
-        { threshold: 0.5 }
-      );
-      stackLayers.forEach((layer) => stackObserver.observe(layer));
-    } else {
-      stackLayers.forEach((layer) => layer.classList.add("is-visible"));
-    }
   }
 
   /* ---------- Achievements slider dots ---------- */

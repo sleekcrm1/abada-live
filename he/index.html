@@ -38,21 +38,11 @@
 <body>
 <a class="skip-link" href="#main">דלג לתוכן</a>
 
-<!-- Global atmospheric background — fixed, decorative, site-wide.
-     Rotating wireframe globe + moving grid react to overall page scroll;
-     starfield/planets/asteroids show in dark mode, drifting clouds +
-     a subtle eclipse pulse show in light mode. Purely CSS/JS, no images. -->
-<div class="atmo-grid" aria-hidden="true"></div>
-<div class="atmo-globe-wrap" aria-hidden="true"><div class="atmo-globe"></div></div>
-<div class="atmo-eclipse" aria-hidden="true"></div>
-<div class="atmo-stars fade-on-scroll" aria-hidden="true">
-  <div class="atmo-planet atmo-planet-1"></div>
-  <div class="atmo-planet atmo-planet-2"></div>
-  <div class="atmo-planet atmo-planet-3"></div>
-  <div class="atmo-asteroid atmo-asteroid-1"></div>
-  <div class="atmo-asteroid atmo-asteroid-2"></div>
-</div>
-<div class="atmo-clouds fade-on-scroll" aria-hidden="true">
+<!-- Background ambience — fixed, decorative, site-wide, no scroll JS.
+     Just the day/night effect: drifting clouds in light mode, a faint
+     twinkling starfield in dark mode. -->
+<div class="atmo-stars" aria-hidden="true"></div>
+<div class="atmo-clouds" aria-hidden="true">
   <div class="atmo-cloud atmo-cloud-1"></div>
   <div class="atmo-cloud atmo-cloud-2"></div>
   <div class="atmo-cloud atmo-cloud-3"></div>
@@ -121,7 +111,7 @@
       <source src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/Main-videos.mp4" type="video/mp4">
     </video>
     <div class="hero-mobile-bg" style="background-image:url('https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/upscalemedia-transformed-1-scaled.png');"></div>
-    <div class="celestial-container fade-on-scroll" aria-hidden="true">
+    <div class="celestial-container" aria-hidden="true">
       <div class="sun"></div>
       <div class="moon"></div>
     </div>
@@ -174,66 +164,47 @@
       <h2>לחימה שהיא גם ריקוד, מוזיקה והיסטוריה חיה</h2>
       <p>קפוארה היא אמנות לחימה ברזילאית ייחודית שנוצרה לפני כ-400 שנה בידי עבדים שהובאו מאפריקה, ששילבו בה תנועות ריקוד ומוזיקה כדי להסוות את אימוני ההגנה העצמית שלהם. כיום היא מוכרת על ידי אונסק״ו כמורשת תרבותית של האנושות.</p>
     </div>
+    <div class="grid grid-3">
+      
+      <div class="card">
+        <div class="icon">🥋</div>
+        <h3>תנועה זורמת</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">בעיטות, התחמקויות וסיבובים אקרובטיים במקום עימות ישיר.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">🥁</div>
+        <h3>מוזיקה חיה</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">ברימבאו, אטבקי ופנדיירו מלווים כל אימון ומכתיבים את הקצב.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">⭕</div>
+        <h3>הרודה</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">מעגל התלמידים שבתוכו שני שחקנים מנהלים 'שיחה' של תנועה.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">🌍</div>
+        <h3>שושלת ברזילאית מוסמכת</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">ABADÁ — אחת מפדרציות הקפוארה המובילות בעולם — עם מדריכים בעלי הסמכה וניסיון בינלאומי.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">🤝</div>
+        <h3>פתוח לכולם</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">ילדים, נוער, מבוגרים ואנשים עם מוגבלויות — כולם מוצאים בית בקבוצות שלנו.</p>
+      </div>
+      
+      <div class="card">
+        <div class="icon">🏆</div>
+        <h3>הישגי נבחרת</h3>
+        <p style="color:var(--fg-soft); font-size:.95rem;">נבחרות אבאדה ישראל מייצגות אותנו באירועים בינלאומיים ומביאות הישגים מרשימים.</p>
+      </div>
+      
+    </div>
   </div>
 </section>
-
-<div class="stack-container">
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">01</div>
-      <h2 class="reveal-item delay-2">🥋 תנועה זורמת</h2>
-      <p class="reveal-item delay-3">בעיטות, התחמקויות וסיבובים אקרובטיים במקום עימות ישיר.</p>
-    </div>
-  </section>
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">02</div>
-      <h2 class="reveal-item delay-2">🥁 מוזיקה חיה</h2>
-      <p class="reveal-item delay-3">ברימבאו, אטבקי ופנדיירו מלווים כל אימון ומכתיבים את הקצב.</p>
-    </div>
-  </section>
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">03</div>
-      <h2 class="reveal-item delay-2">⭕ הרודה</h2>
-      <p class="reveal-item delay-3">מעגל התלמידים שבתוכו שני שחקנים מנהלים 'שיחה' של תנועה.</p>
-    </div>
-  </section>
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">04</div>
-      <h2 class="reveal-item delay-2">🌍 שושלת ברזילאית מוסמכת</h2>
-      <p class="reveal-item delay-3">ABADÁ — אחת מפדרציות הקפוארה המובילות בעולם — עם מדריכים בעלי הסמכה וניסיון בינלאומי.</p>
-    </div>
-  </section>
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">05</div>
-      <h2 class="reveal-item delay-2">🤝 פתוח לכולם</h2>
-      <p class="reveal-item delay-3">ילדים, נוער, מבוגרים ואנשים עם מוגבלויות — כולם מוצאים בית בקבוצות שלנו.</p>
-    </div>
-  </section>
-  
-  <section class="stack-layer">
-    <div class="bg-graphic" aria-hidden="true"></div>
-    <div class="glass-panel">
-      <div class="badge reveal-item delay-1">06</div>
-      <h2 class="reveal-item delay-2">🏆 הישגי נבחרת</h2>
-      <p class="reveal-item delay-3">נבחרות אבאדה ישראל מייצגות אותנו באירועים בינלאומיים ומביאות הישגים מרשימים.</p>
-    </div>
-  </section>
-  
-</div>
 
 <section class="section">
   <div class="container">
