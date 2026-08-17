@@ -38,6 +38,26 @@
 <body>
 <a class="skip-link" href="#main">Ir para o conteúdo</a>
 
+<!-- Global atmospheric background — fixed, decorative, site-wide.
+     Rotating wireframe globe + moving grid react to overall page scroll;
+     starfield/planets/asteroids show in dark mode, drifting clouds +
+     a subtle eclipse pulse show in light mode. Purely CSS/JS, no images. -->
+<div class="atmo-grid" aria-hidden="true"></div>
+<div class="atmo-globe-wrap" aria-hidden="true"><div class="atmo-globe"></div></div>
+<div class="atmo-eclipse" aria-hidden="true"></div>
+<div class="atmo-stars fade-on-scroll" aria-hidden="true">
+  <div class="atmo-planet atmo-planet-1"></div>
+  <div class="atmo-planet atmo-planet-2"></div>
+  <div class="atmo-planet atmo-planet-3"></div>
+  <div class="atmo-asteroid atmo-asteroid-1"></div>
+  <div class="atmo-asteroid atmo-asteroid-2"></div>
+</div>
+<div class="atmo-clouds fade-on-scroll" aria-hidden="true">
+  <div class="atmo-cloud atmo-cloud-1"></div>
+  <div class="atmo-cloud atmo-cloud-2"></div>
+  <div class="atmo-cloud atmo-cloud-3"></div>
+</div>
+
 <header class="site-header">
   <div class="container">
     <a href="/pt/" class="brand">
@@ -128,63 +148,45 @@
   </div>
 </section>
 
-<section class="scroll-journey" style="height:calc(4 * 90vh);">
-  <div class="axe-energy axe-1" aria-hidden="true"></div>
-  <div class="axe-energy axe-2" aria-hidden="true"></div>
-  <div class="axe-energy axe-3" aria-hidden="true"></div>
-
-  <div class="sticky-viewport">
-    <div class="journey-bg-layer" aria-hidden="true">
-      
-      <img class="journey-bg-img active" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1366-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1417-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1160-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1430-Background-Removed-scaled.png" alt="" loading="lazy">
-      
+<div class="stack-container">
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">01</div>
+      <h2 class="reveal-item delay-2">🛡️ Defesa e ataque</h2>
+      <p class="reveal-item delay-3">Prática de movimentos de base, chutes e esquivas em ritmo progressivo.</p>
     </div>
-
-    <div class="progress-track-container">
-      <div class="progress-fill"></div>
-      <div class="scroll-bead"></div>
-      
-      <div class="scroll-node" style="top:12.5%;"></div>
-      
-      <div class="scroll-node" style="top:37.5%;"></div>
-      
-      <div class="scroll-node" style="top:62.5%;"></div>
-      
-      <div class="scroll-node" style="top:87.5%;"></div>
-      
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">02</div>
+      <h2 class="reveal-item delay-2">🤸 Saltos e acrobacia</h2>
+      <p class="reveal-item delay-3">Desenvolvimento de força, flexibilidade e coordenação corporal.</p>
     </div>
-
-    <div class="story-cards-wrapper">
-      
-      <div class="story-card">
-        <h2>🛡️ Defesa e ataque <span>01</span></h2>
-        <p>Prática de movimentos de base, chutes e esquivas em ritmo progressivo.</p>
-      </div>
-      
-      <div class="story-card story-card-alt">
-        <h2>🤸 Saltos e acrobacia <span>02</span></h2>
-        <p>Desenvolvimento de força, flexibilidade e coordenação corporal.</p>
-      </div>
-      
-      <div class="story-card">
-        <h2>🎵 Música e canto <span>03</span></h2>
-        <p>Contato com berimbau, atabaque, pandeiro e as músicas tradicionais.</p>
-      </div>
-      
-      <div class="story-card story-card-alt">
-        <h2>🤝 Trabalho em conjunto <span>04</span></h2>
-        <p>Exercícios em dupla e em grupo que constroem autoconfiança e conexão.</p>
-      </div>
-      
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">03</div>
+      <h2 class="reveal-item delay-2">🎵 Música e canto</h2>
+      <p class="reveal-item delay-3">Contato com berimbau, atabaque, pandeiro e as músicas tradicionais.</p>
     </div>
-  </div>
-</section>
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">04</div>
+      <h2 class="reveal-item delay-2">🤝 Trabalho em conjunto</h2>
+      <p class="reveal-item delay-3">Exercícios em dupla e em grupo que constroem autoconfiança e conexão.</p>
+    </div>
+  </section>
+  
+</div>
 
 <section class="section">
   <div class="container">

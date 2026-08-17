@@ -38,6 +38,26 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
+<!-- Global atmospheric background — fixed, decorative, site-wide.
+     Rotating wireframe globe + moving grid react to overall page scroll;
+     starfield/planets/asteroids show in dark mode, drifting clouds +
+     a subtle eclipse pulse show in light mode. Purely CSS/JS, no images. -->
+<div class="atmo-grid" aria-hidden="true"></div>
+<div class="atmo-globe-wrap" aria-hidden="true"><div class="atmo-globe"></div></div>
+<div class="atmo-eclipse" aria-hidden="true"></div>
+<div class="atmo-stars fade-on-scroll" aria-hidden="true">
+  <div class="atmo-planet atmo-planet-1"></div>
+  <div class="atmo-planet atmo-planet-2"></div>
+  <div class="atmo-planet atmo-planet-3"></div>
+  <div class="atmo-asteroid atmo-asteroid-1"></div>
+  <div class="atmo-asteroid atmo-asteroid-2"></div>
+</div>
+<div class="atmo-clouds fade-on-scroll" aria-hidden="true">
+  <div class="atmo-cloud atmo-cloud-1"></div>
+  <div class="atmo-cloud atmo-cloud-2"></div>
+  <div class="atmo-cloud atmo-cloud-3"></div>
+</div>
+
 <header class="site-header">
   <div class="container">
     <a href="/en/" class="brand">
@@ -156,90 +176,72 @@
   </div>
 </section>
 
-<section class="scroll-journey" style="height:calc(7 * 90vh);">
-  <div class="axe-energy axe-1" aria-hidden="true"></div>
-  <div class="axe-energy axe-2" aria-hidden="true"></div>
-  <div class="axe-energy axe-3" aria-hidden="true"></div>
-
-  <div class="sticky-viewport">
-    <div class="journey-bg-layer" aria-hidden="true">
-      
-      <img class="journey-bg-img active" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1303-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1260-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1366-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1417-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1160-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1430-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1293-Background-Removed-scaled.png" alt="" loading="lazy">
-      
+<div class="stack-container">
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">01</div>
+      <h2 class="reveal-item delay-2">🧠 Mental flexibility</h2>
+      <p class="reveal-item delay-3">Changing direction when the planned solution no longer fits reality.</p>
     </div>
-
-    <div class="progress-track-container">
-      <div class="progress-fill"></div>
-      <div class="scroll-bead"></div>
-      
-      <div class="scroll-node" style="top:7.1%;"></div>
-      
-      <div class="scroll-node" style="top:21.4%;"></div>
-      
-      <div class="scroll-node" style="top:35.7%;"></div>
-      
-      <div class="scroll-node" style="top:50.0%;"></div>
-      
-      <div class="scroll-node" style="top:64.3%;"></div>
-      
-      <div class="scroll-node" style="top:78.6%;"></div>
-      
-      <div class="scroll-node" style="top:92.9%;"></div>
-      
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">02</div>
+      <h2 class="reveal-item delay-2">🎭 Improvisation</h2>
+      <p class="reveal-item delay-3">Acting even when there's no ready-made script.</p>
     </div>
-
-    <div class="story-cards-wrapper">
-      
-      <div class="story-card">
-        <h2>🧠 Mental flexibility <span>01</span></h2>
-        <p>Changing direction when the planned solution no longer fits reality.</p>
-      </div>
-      
-      <div class="story-card story-card-alt">
-        <h2>🎭 Improvisation <span>02</span></h2>
-        <p>Acting even when there's no ready-made script.</p>
-      </div>
-      
-      <div class="story-card">
-        <h2>💡 Creative thinking <span>03</span></h2>
-        <p>Discovering that the same situation has more than one solution.</p>
-      </div>
-      
-      <div class="story-card story-card-alt">
-        <h2>⚡ Real-time decision making <span>04</span></h2>
-        <p>Reading the situation, choosing, and responding.</p>
-      </div>
-      
-      <div class="story-card">
-        <h2>👂 Communication & listening <span>05</span></h2>
-        <p>Staying attentive to the person in front of you and adjusting your action accordingly.</p>
-      </div>
-      
-      <div class="story-card story-card-alt">
-        <h2>🌊 Functioning under change <span>06</span></h2>
-        <p>Continuing to act even as the pace rises, conditions shift, and not everything is in your control.</p>
-      </div>
-      
-      <div class="story-card">
-        <h2>🤝 Teamwork <span>07</span></h2>
-        <p>Discovering that the way I act affects the person with me — and vice versa.</p>
-      </div>
-      
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">03</div>
+      <h2 class="reveal-item delay-2">💡 Creative thinking</h2>
+      <p class="reveal-item delay-3">Discovering that the same situation has more than one solution.</p>
     </div>
-  </div>
-</section>
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">04</div>
+      <h2 class="reveal-item delay-2">⚡ Real-time decision making</h2>
+      <p class="reveal-item delay-3">Reading the situation, choosing, and responding.</p>
+    </div>
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">05</div>
+      <h2 class="reveal-item delay-2">👂 Communication & listening</h2>
+      <p class="reveal-item delay-3">Staying attentive to the person in front of you and adjusting your action accordingly.</p>
+    </div>
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">06</div>
+      <h2 class="reveal-item delay-2">🌊 Functioning under change</h2>
+      <p class="reveal-item delay-3">Continuing to act even as the pace rises, conditions shift, and not everything is in your control.</p>
+    </div>
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">07</div>
+      <h2 class="reveal-item delay-2">🤝 Teamwork</h2>
+      <p class="reveal-item delay-3">Discovering that the way I act affects the person with me — and vice versa.</p>
+    </div>
+  </section>
+  
+</div>
 
 <section class="section">
   <div class="container" style="max-width:800px;">

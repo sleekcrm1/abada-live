@@ -38,6 +38,26 @@
 <body>
 <a class="skip-link" href="#main">Ir para o conteúdo</a>
 
+<!-- Global atmospheric background — fixed, decorative, site-wide.
+     Rotating wireframe globe + moving grid react to overall page scroll;
+     starfield/planets/asteroids show in dark mode, drifting clouds +
+     a subtle eclipse pulse show in light mode. Purely CSS/JS, no images. -->
+<div class="atmo-grid" aria-hidden="true"></div>
+<div class="atmo-globe-wrap" aria-hidden="true"><div class="atmo-globe"></div></div>
+<div class="atmo-eclipse" aria-hidden="true"></div>
+<div class="atmo-stars fade-on-scroll" aria-hidden="true">
+  <div class="atmo-planet atmo-planet-1"></div>
+  <div class="atmo-planet atmo-planet-2"></div>
+  <div class="atmo-planet atmo-planet-3"></div>
+  <div class="atmo-asteroid atmo-asteroid-1"></div>
+  <div class="atmo-asteroid atmo-asteroid-2"></div>
+</div>
+<div class="atmo-clouds fade-on-scroll" aria-hidden="true">
+  <div class="atmo-cloud atmo-cloud-1"></div>
+  <div class="atmo-cloud atmo-cloud-2"></div>
+  <div class="atmo-cloud atmo-cloud-3"></div>
+</div>
+
 <header class="site-header">
   <div class="container">
     <a href="/pt/" class="brand">

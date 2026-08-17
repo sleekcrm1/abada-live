@@ -38,6 +38,26 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
+<!-- Global atmospheric background — fixed, decorative, site-wide.
+     Rotating wireframe globe + moving grid react to overall page scroll;
+     starfield/planets/asteroids show in dark mode, drifting clouds +
+     a subtle eclipse pulse show in light mode. Purely CSS/JS, no images. -->
+<div class="atmo-grid" aria-hidden="true"></div>
+<div class="atmo-globe-wrap" aria-hidden="true"><div class="atmo-globe"></div></div>
+<div class="atmo-eclipse" aria-hidden="true"></div>
+<div class="atmo-stars fade-on-scroll" aria-hidden="true">
+  <div class="atmo-planet atmo-planet-1"></div>
+  <div class="atmo-planet atmo-planet-2"></div>
+  <div class="atmo-planet atmo-planet-3"></div>
+  <div class="atmo-asteroid atmo-asteroid-1"></div>
+  <div class="atmo-asteroid atmo-asteroid-2"></div>
+</div>
+<div class="atmo-clouds fade-on-scroll" aria-hidden="true">
+  <div class="atmo-cloud atmo-cloud-1"></div>
+  <div class="atmo-cloud atmo-cloud-2"></div>
+  <div class="atmo-cloud atmo-cloud-3"></div>
+</div>
+
 <header class="site-header">
   <div class="container">
     <a href="/en/" class="brand">
@@ -128,63 +148,45 @@
   </div>
 </section>
 
-<section class="scroll-journey" style="height:calc(4 * 90vh);">
-  <div class="axe-energy axe-1" aria-hidden="true"></div>
-  <div class="axe-energy axe-2" aria-hidden="true"></div>
-  <div class="axe-energy axe-3" aria-hidden="true"></div>
-
-  <div class="sticky-viewport">
-    <div class="journey-bg-layer" aria-hidden="true">
-      
-      <img class="journey-bg-img active" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1366-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1417-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1160-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1430-Background-Removed-scaled.png" alt="" loading="lazy">
-      
+<div class="stack-container">
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">01</div>
+      <h2 class="reveal-item delay-2">🛡️ Defense & attack</h2>
+      <p class="reveal-item delay-3">Practicing base movements, kicks and evasions at a progressive pace.</p>
     </div>
-
-    <div class="progress-track-container">
-      <div class="progress-fill"></div>
-      <div class="scroll-bead"></div>
-      
-      <div class="scroll-node" style="top:12.5%;"></div>
-      
-      <div class="scroll-node" style="top:37.5%;"></div>
-      
-      <div class="scroll-node" style="top:62.5%;"></div>
-      
-      <div class="scroll-node" style="top:87.5%;"></div>
-      
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">02</div>
+      <h2 class="reveal-item delay-2">🤸 Jumps & acrobatics</h2>
+      <p class="reveal-item delay-3">Building strength, flexibility and body coordination.</p>
     </div>
-
-    <div class="story-cards-wrapper">
-      
-      <div class="story-card">
-        <h2>🛡️ Defense & attack <span>01</span></h2>
-        <p>Practicing base movements, kicks and evasions at a progressive pace.</p>
-      </div>
-      
-      <div class="story-card story-card-alt">
-        <h2>🤸 Jumps & acrobatics <span>02</span></h2>
-        <p>Building strength, flexibility and body coordination.</p>
-      </div>
-      
-      <div class="story-card">
-        <h2>🎵 Music & singing <span>03</span></h2>
-        <p>Getting to know the berimbau, atabaque, pandeiro and traditional songs.</p>
-      </div>
-      
-      <div class="story-card story-card-alt">
-        <h2>🤝 Working together <span>04</span></h2>
-        <p>Partner and group drills that build confidence and connection.</p>
-      </div>
-      
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">03</div>
+      <h2 class="reveal-item delay-2">🎵 Music & singing</h2>
+      <p class="reveal-item delay-3">Getting to know the berimbau, atabaque, pandeiro and traditional songs.</p>
     </div>
-  </div>
-</section>
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">04</div>
+      <h2 class="reveal-item delay-2">🤝 Working together</h2>
+      <p class="reveal-item delay-3">Partner and group drills that build confidence and connection.</p>
+    </div>
+  </section>
+  
+</div>
 
 <section class="section">
   <div class="container">

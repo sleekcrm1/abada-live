@@ -3,6 +3,28 @@
 (function () {
   "use strict";
 
+  /* ---------- Global scroll progress (drives the atmospheric background:
+     rotating globe, moving grid, fade-out hero elements) ---------- */
+  let atmoTicking = false;
+  function updateAtmoScrollProgress() {
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const progress = scrollableHeight > 0 ? scrollY / scrollableHeight : 0;
+    document.body.style.setProperty("--scroll-p", progress.toFixed(4));
+    atmoTicking = false;
+  }
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!atmoTicking) {
+        window.requestAnimationFrame(updateAtmoScrollProgress);
+        atmoTicking = true;
+      }
+    },
+    { passive: true }
+  );
+  updateAtmoScrollProgress();
+
   /* ---------- Theme (light/dark) with sun/moon icons ---------- */
   const THEME_KEY = "aci-theme";
   const root = document.documentElement;
@@ -99,46 +121,26 @@
     );
   }
 
-  /* ---------- Scroll journey (sticky story-card flow, e.g. home page boxes) ----------
-     Works for any .scroll-journey section on any page — length/segment count
-     auto-adapts to however many .story-card elements are actually present,
-     so this never needs hand-tuned breakpoints per section. */
-  const journeySections = Array.from(document.querySelectorAll(".scroll-journey"));
-  if (journeySections.length) {
-    const journeys = journeySections.map((section) => ({
-      section,
-      cards: Array.from(section.querySelectorAll(".story-card")),
-      nodes: Array.from(section.querySelectorAll(".scroll-node")),
-      bgImages: Array.from(section.querySelectorAll(".journey-bg-img")),
-    }));
-
-    let journeyTicking = false;
-    function updateJourneys() {
-      journeys.forEach(({ section, cards, nodes, bgImages }) => {
-        const n = cards.length || 1;
-        const rect = section.getBoundingClientRect();
-        const scrollable = section.offsetHeight - window.innerHeight;
-        const progress = scrollable > 0 ? Math.max(0, Math.min(1, -rect.top / scrollable)) : 0;
-        section.style.setProperty("--scroll-p", progress.toFixed(4));
-
-        const activeIndex = progress <= 0 ? 0 : progress >= 1 ? n - 1 : Math.min(n - 1, Math.floor(progress * n));
-        cards.forEach((card, i) => card.classList.toggle("active", i === activeIndex));
-        nodes.forEach((node, i) => node.classList.toggle("active", i <= activeIndex));
-        bgImages.forEach((img, i) => img.classList.toggle("active", i === activeIndex));
-      });
-      journeyTicking = false;
+  /* ---------- Sticky peeling stack (home/about/corporate box flows) ----------
+     Each .stack-layer gets an "is-visible" class once it's ~50% into view,
+     which triggers its .reveal-item children (badge/heading/body) to fade
+     and slide in with a stagger. Works for any number of layers on any
+     page — nothing here is hardcoded to a specific count. */
+  const stackLayers = document.querySelectorAll(".stack-layer");
+  if (stackLayers.length) {
+    if ("IntersectionObserver" in window) {
+      const stackObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("is-visible");
+          });
+        },
+        { threshold: 0.5 }
+      );
+      stackLayers.forEach((layer) => stackObserver.observe(layer));
+    } else {
+      stackLayers.forEach((layer) => layer.classList.add("is-visible"));
     }
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (!journeyTicking) {
-          window.requestAnimationFrame(updateJourneys);
-          journeyTicking = true;
-        }
-      },
-      { passive: true }
-    );
-    updateJourneys();
   }
 
   /* ---------- Achievements slider dots ---------- */

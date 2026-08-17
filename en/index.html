@@ -38,6 +38,26 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
+<!-- Global atmospheric background — fixed, decorative, site-wide.
+     Rotating wireframe globe + moving grid react to overall page scroll;
+     starfield/planets/asteroids show in dark mode, drifting clouds +
+     a subtle eclipse pulse show in light mode. Purely CSS/JS, no images. -->
+<div class="atmo-grid" aria-hidden="true"></div>
+<div class="atmo-globe-wrap" aria-hidden="true"><div class="atmo-globe"></div></div>
+<div class="atmo-eclipse" aria-hidden="true"></div>
+<div class="atmo-stars fade-on-scroll" aria-hidden="true">
+  <div class="atmo-planet atmo-planet-1"></div>
+  <div class="atmo-planet atmo-planet-2"></div>
+  <div class="atmo-planet atmo-planet-3"></div>
+  <div class="atmo-asteroid atmo-asteroid-1"></div>
+  <div class="atmo-asteroid atmo-asteroid-2"></div>
+</div>
+<div class="atmo-clouds fade-on-scroll" aria-hidden="true">
+  <div class="atmo-cloud atmo-cloud-1"></div>
+  <div class="atmo-cloud atmo-cloud-2"></div>
+  <div class="atmo-cloud atmo-cloud-3"></div>
+</div>
+
 <header class="site-header">
   <div class="container">
     <a href="/en/" class="brand">
@@ -101,7 +121,7 @@
       <source src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/Main-videos.mp4" type="video/mp4">
     </video>
     <div class="hero-mobile-bg" style="background-image:url('https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/upscalemedia-transformed-1-scaled.png');"></div>
-    <div class="celestial-container" aria-hidden="true">
+    <div class="celestial-container fade-on-scroll" aria-hidden="true">
       <div class="sun"></div>
       <div class="moon"></div>
     </div>
@@ -157,81 +177,63 @@
   </div>
 </section>
 
-<section class="scroll-journey" style="height:calc(6 * 90vh);">
-  <div class="axe-energy axe-1" aria-hidden="true"></div>
-  <div class="axe-energy axe-2" aria-hidden="true"></div>
-  <div class="axe-energy axe-3" aria-hidden="true"></div>
-
-  <div class="sticky-viewport">
-    <div class="journey-bg-layer" aria-hidden="true">
-      
-      <img class="journey-bg-img active" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1430-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1293-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1303-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1260-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1366-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1417-Background-Removed-scaled.png" alt="" loading="lazy">
-      
+<div class="stack-container">
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">01</div>
+      <h2 class="reveal-item delay-2">🥋 Flowing movement</h2>
+      <p class="reveal-item delay-3">Kicks, evasions and acrobatic spins in place of direct confrontation.</p>
     </div>
-
-    <div class="progress-track-container">
-      <div class="progress-fill"></div>
-      <div class="scroll-bead"></div>
-      
-      <div class="scroll-node" style="top:8.3%;"></div>
-      
-      <div class="scroll-node" style="top:25.0%;"></div>
-      
-      <div class="scroll-node" style="top:41.7%;"></div>
-      
-      <div class="scroll-node" style="top:58.3%;"></div>
-      
-      <div class="scroll-node" style="top:75.0%;"></div>
-      
-      <div class="scroll-node" style="top:91.7%;"></div>
-      
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">02</div>
+      <h2 class="reveal-item delay-2">🥁 Live music</h2>
+      <p class="reveal-item delay-3">Berimbau, atabaque and pandeiro accompany every class and set its rhythm.</p>
     </div>
-
-    <div class="story-cards-wrapper">
-      
-      <div class="story-card">
-        <h2>🥋 Flowing movement <span>01</span></h2>
-        <p>Kicks, evasions and acrobatic spins in place of direct confrontation.</p>
-      </div>
-      
-      <div class="story-card story-card-alt">
-        <h2>🥁 Live music <span>02</span></h2>
-        <p>Berimbau, atabaque and pandeiro accompany every class and set its rhythm.</p>
-      </div>
-      
-      <div class="story-card">
-        <h2>⭕ The roda <span>03</span></h2>
-        <p>The circle of students where two players carry on a 'conversation' of movement.</p>
-      </div>
-      
-      <div class="story-card story-card-alt">
-        <h2>🌍 Certified Brazilian lineage <span>04</span></h2>
-        <p>ABADÁ — one of the world's leading capoeira federations — with internationally experienced, certified instructors.</p>
-      </div>
-      
-      <div class="story-card">
-        <h2>🤝 Open to everyone <span>05</span></h2>
-        <p>Kids, teens, adults and people with disabilities all find a home in our groups.</p>
-      </div>
-      
-      <div class="story-card story-card-alt">
-        <h2>🏆 Competitive results <span>06</span></h2>
-        <p>ABADÁ Israel's national teams represent us proudly at international events and bring home strong results.</p>
-      </div>
-      
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">03</div>
+      <h2 class="reveal-item delay-2">⭕ The roda</h2>
+      <p class="reveal-item delay-3">The circle of students where two players carry on a 'conversation' of movement.</p>
     </div>
-  </div>
-</section>
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">04</div>
+      <h2 class="reveal-item delay-2">🌍 Certified Brazilian lineage</h2>
+      <p class="reveal-item delay-3">ABADÁ — one of the world's leading capoeira federations — with internationally experienced, certified instructors.</p>
+    </div>
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">05</div>
+      <h2 class="reveal-item delay-2">🤝 Open to everyone</h2>
+      <p class="reveal-item delay-3">Kids, teens, adults and people with disabilities all find a home in our groups.</p>
+    </div>
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">06</div>
+      <h2 class="reveal-item delay-2">🏆 Competitive results</h2>
+      <p class="reveal-item delay-3">ABADÁ Israel's national teams represent us proudly at international events and bring home strong results.</p>
+    </div>
+  </section>
+  
+</div>
 
 <section class="section">
   <div class="container">

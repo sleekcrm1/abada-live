@@ -38,6 +38,26 @@
 <body>
 <a class="skip-link" href="#main">דלג לתוכן</a>
 
+<!-- Global atmospheric background — fixed, decorative, site-wide.
+     Rotating wireframe globe + moving grid react to overall page scroll;
+     starfield/planets/asteroids show in dark mode, drifting clouds +
+     a subtle eclipse pulse show in light mode. Purely CSS/JS, no images. -->
+<div class="atmo-grid" aria-hidden="true"></div>
+<div class="atmo-globe-wrap" aria-hidden="true"><div class="atmo-globe"></div></div>
+<div class="atmo-eclipse" aria-hidden="true"></div>
+<div class="atmo-stars fade-on-scroll" aria-hidden="true">
+  <div class="atmo-planet atmo-planet-1"></div>
+  <div class="atmo-planet atmo-planet-2"></div>
+  <div class="atmo-planet atmo-planet-3"></div>
+  <div class="atmo-asteroid atmo-asteroid-1"></div>
+  <div class="atmo-asteroid atmo-asteroid-2"></div>
+</div>
+<div class="atmo-clouds fade-on-scroll" aria-hidden="true">
+  <div class="atmo-cloud atmo-cloud-1"></div>
+  <div class="atmo-cloud atmo-cloud-2"></div>
+  <div class="atmo-cloud atmo-cloud-3"></div>
+</div>
+
 <header class="site-header">
   <div class="container">
     <a href="/he/" class="brand">
@@ -156,90 +176,72 @@
   </div>
 </section>
 
-<section class="scroll-journey" style="height:calc(7 * 90vh);">
-  <div class="axe-energy axe-1" aria-hidden="true"></div>
-  <div class="axe-energy axe-2" aria-hidden="true"></div>
-  <div class="axe-energy axe-3" aria-hidden="true"></div>
-
-  <div class="sticky-viewport">
-    <div class="journey-bg-layer" aria-hidden="true">
-      
-      <img class="journey-bg-img active" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1303-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1260-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1366-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1417-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1160-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1430-Background-Removed-scaled.png" alt="" loading="lazy">
-      
-      <img class="journey-bg-img" src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1293-Background-Removed-scaled.png" alt="" loading="lazy">
-      
+<div class="stack-container">
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">01</div>
+      <h2 class="reveal-item delay-2">🧠 גמישות מחשבתית</h2>
+      <p class="reveal-item delay-3">לשנות כיוון כשהפתרון שתכננו כבר לא מתאים למציאות.</p>
     </div>
-
-    <div class="progress-track-container">
-      <div class="progress-fill"></div>
-      <div class="scroll-bead"></div>
-      
-      <div class="scroll-node" style="top:7.1%;"></div>
-      
-      <div class="scroll-node" style="top:21.4%;"></div>
-      
-      <div class="scroll-node" style="top:35.7%;"></div>
-      
-      <div class="scroll-node" style="top:50.0%;"></div>
-      
-      <div class="scroll-node" style="top:64.3%;"></div>
-      
-      <div class="scroll-node" style="top:78.6%;"></div>
-      
-      <div class="scroll-node" style="top:92.9%;"></div>
-      
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">02</div>
+      <h2 class="reveal-item delay-2">🎭 יכולת אלתור</h2>
+      <p class="reveal-item delay-3">לפעול גם כשאין תסריט מוכן מראש.</p>
     </div>
-
-    <div class="story-cards-wrapper">
-      
-      <div class="story-card">
-        <h2>🧠 גמישות מחשבתית <span>01</span></h2>
-        <p>לשנות כיוון כשהפתרון שתכננו כבר לא מתאים למציאות.</p>
-      </div>
-      
-      <div class="story-card story-card-alt">
-        <h2>🎭 יכולת אלתור <span>02</span></h2>
-        <p>לפעול גם כשאין תסריט מוכן מראש.</p>
-      </div>
-      
-      <div class="story-card">
-        <h2>💡 חשיבה יצירתית <span>03</span></h2>
-        <p>לגלות שלאותה סיטואציה יש יותר מפתרון אחד.</p>
-      </div>
-      
-      <div class="story-card story-card-alt">
-        <h2>⚡ קבלת החלטות בזמן אמת <span>04</span></h2>
-        <p>לקרוא את המצב, לבחור ולהגיב.</p>
-      </div>
-      
-      <div class="story-card">
-        <h2>👂 תקשורת והקשבה <span>05</span></h2>
-        <p>להיות קשובים לאדם שמולנו ולהתאים את הפעולה שלנו אליו.</p>
-      </div>
-      
-      <div class="story-card story-card-alt">
-        <h2>🌊 תפקוד בסביבה משתנה <span>06</span></h2>
-        <p>להמשיך לפעול גם כשהקצב עולה, התנאים משתנים ולא הכול נמצא בשליטתנו.</p>
-      </div>
-      
-      <div class="story-card">
-        <h2>🤝 עבודת צוות <span>07</span></h2>
-        <p>לגלות שהדרך שבה אני פועל משפיעה על מי שנמצא איתי – ולהפך.</p>
-      </div>
-      
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">03</div>
+      <h2 class="reveal-item delay-2">💡 חשיבה יצירתית</h2>
+      <p class="reveal-item delay-3">לגלות שלאותה סיטואציה יש יותר מפתרון אחד.</p>
     </div>
-  </div>
-</section>
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">04</div>
+      <h2 class="reveal-item delay-2">⚡ קבלת החלטות בזמן אמת</h2>
+      <p class="reveal-item delay-3">לקרוא את המצב, לבחור ולהגיב.</p>
+    </div>
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">05</div>
+      <h2 class="reveal-item delay-2">👂 תקשורת והקשבה</h2>
+      <p class="reveal-item delay-3">להיות קשובים לאדם שמולנו ולהתאים את הפעולה שלנו אליו.</p>
+    </div>
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">06</div>
+      <h2 class="reveal-item delay-2">🌊 תפקוד בסביבה משתנה</h2>
+      <p class="reveal-item delay-3">להמשיך לפעול גם כשהקצב עולה, התנאים משתנים ולא הכול נמצא בשליטתנו.</p>
+    </div>
+  </section>
+  
+  <section class="stack-layer">
+    <div class="bg-graphic" aria-hidden="true"></div>
+    <div class="glass-panel">
+      <div class="badge reveal-item delay-1">07</div>
+      <h2 class="reveal-item delay-2">🤝 עבודת צוות</h2>
+      <p class="reveal-item delay-3">לגלות שהדרך שבה אני פועל משפיעה על מי שנמצא איתי – ולהפך.</p>
+    </div>
+  </section>
+  
+</div>
 
 <section class="section">
   <div class="container" style="max-width:800px;">
