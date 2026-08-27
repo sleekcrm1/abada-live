@@ -5,25 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Galeria — ABADÁ Capoeira Israel</title>
 <meta name="description" content="Fotos de eventos e treinos da ABADÁ Capoeira Israel.">
-<link rel="canonical" href="https://abadacapoeiraisrael.org.il/pt/gallery/">
+<link rel="canonical" href="https://abada.live/pt/gallery/">
 
-<link rel="alternate" hreflang="he-IL" href="https://abadacapoeiraisrael.org.il/he/gallery/">
-<link rel="alternate" hreflang="en" href="https://abadacapoeiraisrael.org.il/en/gallery/">
-<link rel="alternate" hreflang="pt-BR" href="https://abadacapoeiraisrael.org.il/pt/gallery/">
-<link rel="alternate" hreflang="x-default" href="https://abadacapoeiraisrael.org.il/he/gallery/">
+<link rel="alternate" hreflang="he-IL" href="https://abada.live/he/gallery/">
+<link rel="alternate" hreflang="en" href="https://abada.live/en/gallery/">
+<link rel="alternate" hreflang="pt-BR" href="https://abada.live/pt/gallery/">
+<link rel="alternate" hreflang="x-default" href="https://abada.live/he/gallery/">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Galeria — ABADÁ Capoeira Israel">
 <meta property="og:description" content="Fotos de eventos e treinos da ABADÁ Capoeira Israel.">
-<meta property="og:url" content="https://abadacapoeiraisrael.org.il/pt/gallery/">
-<meta property="og:image" content="https://abadacapoeiraisrael.org.il/assets/img/icons/icon-512.png">
+<meta property="og:url" content="https://abada.live/pt/gallery/">
+<meta property="og:image" content="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/07/ChatGPT-Image-Jul-9-2025-02_53_43-PM.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="ABADÁ Capoeira Israel logo">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/07/ChatGPT-Image-Jul-9-2025-02_53_43-PM.png">
 
 <link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#1c2541">
-<link rel="icon" href="/assets/img/icons/favicon-32.png" sizes="32x32">
-<link rel="icon" href="/assets/img/icons/favicon-16.png" sizes="16x16">
+<meta name="theme-color" content="#1B3A52">
+<link rel="icon" type="image/png" href="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/07/ChatGPT-Image-Jul-9-2025-02_53_43-PM.png">
+<link rel="shortcut icon" href="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/07/ChatGPT-Image-Jul-9-2025-02_53_43-PM.png">
 <link rel="apple-touch-icon" href="/assets/img/icons/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -38,10 +42,20 @@
 <body>
 <a class="skip-link" href="#main">Ir para o conteúdo</a>
 
-<!-- Background ambience — fixed, decorative, site-wide, no scroll JS.
-     Just the day/night effect: drifting clouds in light mode, a faint
-     twinkling starfield in dark mode. -->
-<div class="atmo-stars" aria-hidden="true"></div>
+<!-- Background ambience — fixed, decorative, site-wide.
+     Rotating wireframe globe + moving grid react to overall page scroll;
+     starfield/planets/asteroids show in dark mode, drifting clouds +
+     a subtle eclipse pulse show in light mode. -->
+<div class="atmo-grid" aria-hidden="true"></div>
+<div class="atmo-globe-wrap" aria-hidden="true"><div class="atmo-globe"></div></div>
+<div class="atmo-eclipse" aria-hidden="true"></div>
+<div class="atmo-stars" aria-hidden="true">
+  <div class="atmo-planet atmo-planet-1"></div>
+  <div class="atmo-planet atmo-planet-2"></div>
+  <div class="atmo-planet atmo-planet-3"></div>
+  <div class="atmo-asteroid atmo-asteroid-1"></div>
+  <div class="atmo-asteroid atmo-asteroid-2"></div>
+</div>
 <div class="atmo-clouds" aria-hidden="true">
   <div class="atmo-cloud atmo-cloud-1"></div>
   <div class="atmo-cloud atmo-cloud-2"></div>
@@ -55,13 +69,12 @@
       <span>ABADÁ Capoeira Israel</span>
     </a>
 
-    <nav class="nav-primary" data-nav aria-label="Navegação principal">
-      <a href="/pt/about/" >Quem Somos</a>
-      <a href="/pt/trainers/" >Instrutores</a>
-      <a href="/pt/events/" >Eventos</a>
+    <nav class="nav-primary" aria-label="Navegação principal">
+      <a href="/pt/about/">Quem Somos</a>
+      <a href="/pt/trainers/">Instrutores</a>
       <a href="/pt/gallery/" aria-current="page">Galeria</a>
-      <a href="/pt/corporate/" >Para Empresas</a>
-      <a href="/pt/contact/" >Contato</a>
+      <a href="/pt/corporate/">Para Empresas</a>
+      <a href="/pt/contact/">Contato</a>
     </nav>
 
     <div class="header-tools">
@@ -98,10 +111,64 @@
           </span>
         </span>
       </button>
-      <button class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-label="Menu">☰</button>
     </div>
   </div>
 </header>
+
+<div class="floating-controls">
+  <button class="sky-toggle" data-theme-toggle aria-label="Alternar tema">
+        <span class="sky-toggle-track">
+          <span class="sky-star sky-star-1"></span>
+          <span class="sky-star sky-star-2"></span>
+          <span class="sky-star sky-star-3"></span>
+          <span class="sky-cloud sky-cloud-1">
+            <svg viewBox="0 0 64 34" fill="currentColor"><path d="M16 26a10 10 0 010-20 12 12 0 0122.6-4A9 9 0 0148 20a8 8 0 01-1 16H14a9 9 0 01-2-18z"/></svg>
+          </span>
+          <span class="sky-cloud sky-cloud-2">
+            <svg viewBox="0 0 64 34" fill="currentColor"><path d="M16 26a10 10 0 010-20 12 12 0 0122.6-4A9 9 0 0148 20a8 8 0 01-1 16H14a9 9 0 01-2-18z"/></svg>
+          </span>
+          <span class="sky-knob">
+            <svg class="sky-sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="sky-moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </span>
+        </span>
+      </button>
+  <button class="menu-fab" data-menu-fab aria-expanded="false" aria-label="Menu">
+    <span class="menu-fab-bars"><span></span><span></span><span></span></span>
+  </button>
+</div>
+
+<div class="menu-overlay" data-menu-overlay>
+  <div class="menu-overlay-inner">
+    <a href="/pt/" class="brand menu-overlay-brand">
+      <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/07/ChatGPT-Image-Jul-9-2025-02_53_43-PM.png" alt="ABADÁ Capoeira Israel" width="64" height="64">
+      <span>ABADÁ Capoeira Israel</span>
+    </a>
+    <nav class="menu-overlay-nav" aria-label="Navegação principal">
+      <a href="/pt/about/">Quem Somos</a>
+      <a href="/pt/trainers/">Instrutores</a>
+      <a href="/pt/gallery/" aria-current="page">Galeria</a>
+      <a href="/pt/corporate/">Para Empresas</a>
+      <a href="/pt/contact/">Contato</a>
+    </nav>
+    <details class="lang-switch">
+        <summary>
+          🇧🇷
+          <span class="lang-switch-code">PT</span>
+        </summary>
+        <div class="lang-menu">
+          <a href="/he/gallery/" ><span class="lang-flag">🇮🇱</span> עברית</a>
+          <a href="/en/gallery/" ><span class="lang-flag">🇺🇸</span> English</a>
+          <a href="/pt/gallery/" style="color:var(--color-gold);"><span class="lang-flag">🇧🇷</span> Português</a>
+          
+        </div>
+      </details>
+  </div>
+</div>
 
 <main id="main">
 <section class="page-header">
@@ -114,70 +181,87 @@
 
 <section class="section">
   <div class="container">
-    <div class="masonry">
-      
-      <figure>
+    <div class="gallery-categories">
+      <div class="gallery-category">
+      <h3 class="gallery-category-title">Campeonato de Adultos — Pardes Hana 2025</h3>
+      <div class="masonry">
+        <figure>
         <img src="/assets/img/gallery-placeholder-1.svg" alt="Campeonato de Adultos — Pardes Hana 2025" loading="lazy">
         <figcaption class="sr-only" style="padding:10px 4px 0; font-size:.85rem; color:var(--fg-soft);">Campeonato de Adultos — Pardes Hana 2025</figcaption>
       </figure>
-      
-      <figure>
+      </div>
+    </div>
+      <div class="gallery-category">
+      <h3 class="gallery-category-title">Campeonato de Israel Adultos — Modi'in 2024</h3>
+      <div class="masonry">
+        <figure>
         <img src="/assets/img/gallery-placeholder-2.svg" alt="Campeonato de Israel Adultos — Modi'in 2024" loading="lazy">
         <figcaption class="sr-only" style="padding:10px 4px 0; font-size:.85rem; color:var(--fg-soft);">Campeonato de Israel Adultos — Modi'in 2024</figcaption>
       </figure>
-      
-      <figure>
+      </div>
+    </div>
+      <div class="gallery-category">
+      <h3 class="gallery-category-title">Jogos de Verão de Capoeira — Be'er Sheva 2025</h3>
+      <div class="masonry">
+        <figure>
         <img src="/assets/img/gallery-placeholder-3.svg" alt="Jogos de Verão de Capoeira — Be'er Sheva 2025" loading="lazy">
         <figcaption class="sr-only" style="padding:10px 4px 0; font-size:.85rem; color:var(--fg-soft);">Jogos de Verão de Capoeira — Be'er Sheva 2025</figcaption>
       </figure>
-      
-      <figure>
+      </div>
+    </div>
+      <div class="gallery-category">
+      <h3 class="gallery-category-title">Batizado — Lahavim 2023</h3>
+      <div class="masonry">
+        <figure>
         <img src="/assets/img/gallery-placeholder-4.svg" alt="Batizado — Lahavim 2023" loading="lazy">
         <figcaption class="sr-only" style="padding:10px 4px 0; font-size:.85rem; color:var(--fg-soft);">Batizado — Lahavim 2023</figcaption>
       </figure>
-      
-      <figure>
+      </div>
+    </div>
+      <div class="gallery-category">
+      <h3 class="gallery-category-title">Campeonato de Israel 2023</h3>
+      <div class="masonry">
+        <figure>
         <img src="/assets/img/gallery-placeholder-1.svg" alt="Campeonato de Israel 2023" loading="lazy">
         <figcaption class="sr-only" style="padding:10px 4px 0; font-size:.85rem; color:var(--fg-soft);">Campeonato de Israel 2023</figcaption>
       </figure>
-      
-      <figure>
+      </div>
+    </div>
+      <div class="gallery-category">
+      <h3 class="gallery-category-title">Mais momentos de treino</h3>
+      <div class="masonry">
+        <figure>
         <img src="/assets/img/gallery-placeholder-2.svg" alt="Roda em Tivon" loading="lazy">
         <figcaption class="sr-only" style="padding:10px 4px 0; font-size:.85rem; color:var(--fg-soft);">Roda em Tivon</figcaption>
       </figure>
-      
-      <figure>
+        <figure>
         <img src="/assets/img/gallery-placeholder-3.svg" alt="Treino em grupo em Karmiel" loading="lazy">
         <figcaption class="sr-only" style="padding:10px 4px 0; font-size:.85rem; color:var(--fg-soft);">Treino em grupo em Karmiel</figcaption>
       </figure>
-      
-      <figure>
+        <figure>
         <img src="/assets/img/gallery-placeholder-4.svg" alt="Instrutores e alunos em Jerusalém" loading="lazy">
         <figcaption class="sr-only" style="padding:10px 4px 0; font-size:.85rem; color:var(--fg-soft);">Instrutores e alunos em Jerusalém</figcaption>
       </figure>
-      
-      <figure>
+        <figure>
         <img src="/assets/img/gallery-placeholder-1.svg" alt="Treino infantil em Haifa" loading="lazy">
         <figcaption class="sr-only" style="padding:10px 4px 0; font-size:.85rem; color:var(--fg-soft);">Treino infantil em Haifa</figcaption>
       </figure>
-      
-      <figure>
+        <figure>
         <img src="/assets/img/gallery-placeholder-2.svg" alt="Encontro nacional" loading="lazy">
         <figcaption class="sr-only" style="padding:10px 4px 0; font-size:.85rem; color:var(--fg-soft);">Encontro nacional</figcaption>
       </figure>
-      
-      <figure>
+        <figure>
         <img src="/assets/img/gallery-placeholder-3.svg" alt="Apresentação de capoeira" loading="lazy">
         <figcaption class="sr-only" style="padding:10px 4px 0; font-size:.85rem; color:var(--fg-soft);">Apresentação de capoeira</figcaption>
       </figure>
-      
-      <figure>
+        <figure>
         <img src="/assets/img/gallery-placeholder-4.svg" alt="Treino no parque, Tel Aviv" loading="lazy">
         <figcaption class="sr-only" style="padding:10px 4px 0; font-size:.85rem; color:var(--fg-soft);">Treino no parque, Tel Aviv</figcaption>
       </figure>
-      
+      </div>
     </div>
-    <p class="form-note" style="margin-top:24px;">Álbuns completos dos eventos recentes em breve — envie fotos do seu núcleo e teremos prazer em publicá-las.</p>
+    </div>
+    p class="form-note" style="margin-top:24px;">Álbuns completos dos eventos recentes em breve — envie fotos do seu núcleo e teremos prazer em publicá-las.</p>
   </div>
 </section>
 </main>
@@ -202,7 +286,6 @@
         <h4>Explorar</h4>
         <a href="/pt/about/">Quem Somos</a>
         <a href="/pt/trainers/">Instrutores</a>
-        <a href="/pt/events/">Eventos</a>
         <a href="/pt/gallery/">Galeria</a>
         <a href="/pt/corporate/">Para Empresas</a>
       </div>

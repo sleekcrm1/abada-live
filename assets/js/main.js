@@ -3,6 +3,28 @@
 (function () {
   "use strict";
 
+  /* ---------- Global scroll progress (drives the atmospheric background:
+     rotating globe, moving grid) ---------- */
+  let atmoTicking = false;
+  function updateAtmoScrollProgress() {
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const progress = scrollableHeight > 0 ? scrollY / scrollableHeight : 0;
+    document.body.style.setProperty("--scroll-p", progress.toFixed(4));
+    atmoTicking = false;
+  }
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!atmoTicking) {
+        window.requestAnimationFrame(updateAtmoScrollProgress);
+        atmoTicking = true;
+      }
+    },
+    { passive: true }
+  );
+  updateAtmoScrollProgress();
+
   /* ---------- Theme (light/dark) with sun/moon icons ---------- */
   const THEME_KEY = "aci-theme";
   const root = document.documentElement;
@@ -72,31 +94,27 @@
     revealEls.forEach((el) => el.classList.add("in-view"));
   }
 
-  /* ---------- Header shadow + hide-on-scroll-down ---------- */
-  const siteHeader = document.querySelector(".site-header");
-  if (siteHeader) {
-    let lastY = window.scrollY;
-    window.addEventListener(
-      "scroll",
-      () => {
-        const y = window.scrollY;
-        siteHeader.classList.toggle("scrolled", y > 8);
-
-        // Hide while scrolling down past the header's own height, show again
-        // on any upward scroll. Ignore tiny jitters and never hide while a
-        // mobile nav dropdown is open.
-        const navOpen = document.querySelector("[data-nav]")?.classList.contains("open");
-        const delta = y - lastY;
-        if (!navOpen && y > siteHeader.offsetHeight) {
-          if (delta > 4) siteHeader.classList.add("header-hidden");
-          else if (delta < -4) siteHeader.classList.remove("header-hidden");
-        } else {
-          siteHeader.classList.remove("header-hidden");
-        }
-        lastY = y;
-      },
-      { passive: true }
-    );
+  /* ---------- Floating menu (bottom-right button opens full-screen overlay) ---------- */
+  const menuFab = document.querySelector("[data-menu-fab]");
+  const menuOverlay = document.querySelector("[data-menu-overlay]");
+  function closeMenu() {
+    if (menuFab) menuFab.setAttribute("aria-expanded", "false");
+    if (menuOverlay) menuOverlay.classList.remove("open");
+  }
+  if (menuFab && menuOverlay) {
+    menuFab.addEventListener("click", () => {
+      const isOpen = menuFab.getAttribute("aria-expanded") === "true";
+      menuFab.setAttribute("aria-expanded", String(!isOpen));
+      menuOverlay.classList.toggle("open", !isOpen);
+    });
+    // Close when a nav link inside the overlay is clicked
+    menuOverlay.addEventListener("click", (e) => {
+      if (e.target.closest(".menu-overlay-nav a")) closeMenu();
+      if (e.target === menuOverlay) closeMenu(); // click on backdrop
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
   }
 
   /* ---------- Achievements slider dots ---------- */
@@ -126,20 +144,6 @@
       frames.forEach((f) => dotIo.observe(f));
     }
   }
-
-  document.addEventListener("click", (e) => {
-    const toggle = e.target.closest("[data-nav-toggle]");
-    const nav = document.querySelector("[data-nav]");
-    if (toggle && nav) {
-      const isOpen = nav.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", String(isOpen));
-      return;
-    }
-    // Close nav when a link inside it is clicked
-    if (nav && nav.classList.contains("open") && e.target.closest("[data-nav] a")) {
-      nav.classList.remove("open");
-    }
-  });
 
   /* ---------- Trainer city filters ---------- */
   const filterBar = document.querySelector("[data-filter-bar]");

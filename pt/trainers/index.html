@@ -5,25 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Instrutores — ABADÁ Capoeira Israel</title>
 <meta name="description" content="Diretório de instrutores da ABADÁ Capoeira em Israel por região.">
-<link rel="canonical" href="https://abadacapoeiraisrael.org.il/pt/trainers/">
+<link rel="canonical" href="https://abada.live/pt/trainers/">
 
-<link rel="alternate" hreflang="he-IL" href="https://abadacapoeiraisrael.org.il/he/trainers/">
-<link rel="alternate" hreflang="en" href="https://abadacapoeiraisrael.org.il/en/trainers/">
-<link rel="alternate" hreflang="pt-BR" href="https://abadacapoeiraisrael.org.il/pt/trainers/">
-<link rel="alternate" hreflang="x-default" href="https://abadacapoeiraisrael.org.il/he/trainers/">
+<link rel="alternate" hreflang="he-IL" href="https://abada.live/he/trainers/">
+<link rel="alternate" hreflang="en" href="https://abada.live/en/trainers/">
+<link rel="alternate" hreflang="pt-BR" href="https://abada.live/pt/trainers/">
+<link rel="alternate" hreflang="x-default" href="https://abada.live/he/trainers/">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Instrutores — ABADÁ Capoeira Israel">
 <meta property="og:description" content="Diretório de instrutores da ABADÁ Capoeira em Israel por região.">
-<meta property="og:url" content="https://abadacapoeiraisrael.org.il/pt/trainers/">
-<meta property="og:image" content="https://abadacapoeiraisrael.org.il/assets/img/icons/icon-512.png">
+<meta property="og:url" content="https://abada.live/pt/trainers/">
+<meta property="og:image" content="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/07/ChatGPT-Image-Jul-9-2025-02_53_43-PM.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="ABADÁ Capoeira Israel logo">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/07/ChatGPT-Image-Jul-9-2025-02_53_43-PM.png">
 
 <link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#1c2541">
-<link rel="icon" href="/assets/img/icons/favicon-32.png" sizes="32x32">
-<link rel="icon" href="/assets/img/icons/favicon-16.png" sizes="16x16">
+<meta name="theme-color" content="#1B3A52">
+<link rel="icon" type="image/png" href="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/07/ChatGPT-Image-Jul-9-2025-02_53_43-PM.png">
+<link rel="shortcut icon" href="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/07/ChatGPT-Image-Jul-9-2025-02_53_43-PM.png">
 <link rel="apple-touch-icon" href="/assets/img/icons/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -38,10 +42,20 @@
 <body>
 <a class="skip-link" href="#main">Ir para o conteúdo</a>
 
-<!-- Background ambience — fixed, decorative, site-wide, no scroll JS.
-     Just the day/night effect: drifting clouds in light mode, a faint
-     twinkling starfield in dark mode. -->
-<div class="atmo-stars" aria-hidden="true"></div>
+<!-- Background ambience — fixed, decorative, site-wide.
+     Rotating wireframe globe + moving grid react to overall page scroll;
+     starfield/planets/asteroids show in dark mode, drifting clouds +
+     a subtle eclipse pulse show in light mode. -->
+<div class="atmo-grid" aria-hidden="true"></div>
+<div class="atmo-globe-wrap" aria-hidden="true"><div class="atmo-globe"></div></div>
+<div class="atmo-eclipse" aria-hidden="true"></div>
+<div class="atmo-stars" aria-hidden="true">
+  <div class="atmo-planet atmo-planet-1"></div>
+  <div class="atmo-planet atmo-planet-2"></div>
+  <div class="atmo-planet atmo-planet-3"></div>
+  <div class="atmo-asteroid atmo-asteroid-1"></div>
+  <div class="atmo-asteroid atmo-asteroid-2"></div>
+</div>
 <div class="atmo-clouds" aria-hidden="true">
   <div class="atmo-cloud atmo-cloud-1"></div>
   <div class="atmo-cloud atmo-cloud-2"></div>
@@ -55,13 +69,12 @@
       <span>ABADÁ Capoeira Israel</span>
     </a>
 
-    <nav class="nav-primary" data-nav aria-label="Navegação principal">
-      <a href="/pt/about/" >Quem Somos</a>
+    <nav class="nav-primary" aria-label="Navegação principal">
+      <a href="/pt/about/">Quem Somos</a>
       <a href="/pt/trainers/" aria-current="page">Instrutores</a>
-      <a href="/pt/events/" >Eventos</a>
-      <a href="/pt/gallery/" >Galeria</a>
-      <a href="/pt/corporate/" >Para Empresas</a>
-      <a href="/pt/contact/" >Contato</a>
+      <a href="/pt/gallery/">Galeria</a>
+      <a href="/pt/corporate/">Para Empresas</a>
+      <a href="/pt/contact/">Contato</a>
     </nav>
 
     <div class="header-tools">
@@ -98,10 +111,64 @@
           </span>
         </span>
       </button>
-      <button class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-label="Menu">☰</button>
     </div>
   </div>
 </header>
+
+<div class="floating-controls">
+  <button class="sky-toggle" data-theme-toggle aria-label="Alternar tema">
+        <span class="sky-toggle-track">
+          <span class="sky-star sky-star-1"></span>
+          <span class="sky-star sky-star-2"></span>
+          <span class="sky-star sky-star-3"></span>
+          <span class="sky-cloud sky-cloud-1">
+            <svg viewBox="0 0 64 34" fill="currentColor"><path d="M16 26a10 10 0 010-20 12 12 0 0122.6-4A9 9 0 0148 20a8 8 0 01-1 16H14a9 9 0 01-2-18z"/></svg>
+          </span>
+          <span class="sky-cloud sky-cloud-2">
+            <svg viewBox="0 0 64 34" fill="currentColor"><path d="M16 26a10 10 0 010-20 12 12 0 0122.6-4A9 9 0 0148 20a8 8 0 01-1 16H14a9 9 0 01-2-18z"/></svg>
+          </span>
+          <span class="sky-knob">
+            <svg class="sky-sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="sky-moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </span>
+        </span>
+      </button>
+  <button class="menu-fab" data-menu-fab aria-expanded="false" aria-label="Menu">
+    <span class="menu-fab-bars"><span></span><span></span><span></span></span>
+  </button>
+</div>
+
+<div class="menu-overlay" data-menu-overlay>
+  <div class="menu-overlay-inner">
+    <a href="/pt/" class="brand menu-overlay-brand">
+      <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/07/ChatGPT-Image-Jul-9-2025-02_53_43-PM.png" alt="ABADÁ Capoeira Israel" width="64" height="64">
+      <span>ABADÁ Capoeira Israel</span>
+    </a>
+    <nav class="menu-overlay-nav" aria-label="Navegação principal">
+      <a href="/pt/about/">Quem Somos</a>
+      <a href="/pt/trainers/" aria-current="page">Instrutores</a>
+      <a href="/pt/gallery/">Galeria</a>
+      <a href="/pt/corporate/">Para Empresas</a>
+      <a href="/pt/contact/">Contato</a>
+    </nav>
+    <details class="lang-switch">
+        <summary>
+          🇧🇷
+          <span class="lang-switch-code">PT</span>
+        </summary>
+        <div class="lang-menu">
+          <a href="/he/trainers/" ><span class="lang-flag">🇮🇱</span> עברית</a>
+          <a href="/en/trainers/" ><span class="lang-flag">🇺🇸</span> English</a>
+          <a href="/pt/trainers/" style="color:var(--color-gold);"><span class="lang-flag">🇧🇷</span> Português</a>
+          
+        </div>
+      </details>
+  </div>
+</div>
 
 <main id="main">
 <section class="page-header">
@@ -126,7 +193,7 @@
       
       <div class="card trainer-card" data-trainer-card data-cities="center">
         <div class="trainer-photo">
-          <img src="/assets/img/trainer-placeholder.svg" alt="ליאת בן זקן" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.23.39-238x300.png" alt="ליאת בן זקן" loading="lazy">
         </div>
         <h3 class="trainer-name">ליאת בן זקן</h3>
         <span class="trainer-alias">Instrutora Risadinha</span>
@@ -134,12 +201,16 @@
           <span class="tag">ראשון לציון</span><span class="tag">גמזו</span>
         </div>
         <p class="trainer-bio">Treinando há 17 anos e lecionando há cerca de 10, combina a capoeira com seu trabalho em saúde mental, vendo-a como uma ferramenta terapêutica poderosa.</p>
-        <a class="trainer-contact" href="tel:0508638385">📞 0508638385</a>
+        <div class="trainer-links">
+          <a class="trainer-contact" href="tel:0508638385">📞 0508638385</a>
+          <a href="https://wa.me/972508638385" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="WhatsApp">💬</a>
+          <a href="https://instagram.com/instrutora.risadinha" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="Instagram">📸</a>
+        </div>
       </div>
       
       <div class="card trainer-card" data-trainer-card data-cities="center">
         <div class="trainer-photo">
-          <img src="/assets/img/trainer-placeholder.svg" alt="אריאלי חגי" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.21.41.png" alt="אריאלי חגי" loading="lazy">
         </div>
         <h3 class="trainer-name">אריאלי חגי</h3>
         <span class="trainer-alias">Pinóquio</span>
@@ -147,12 +218,16 @@
           <span class="tag">מודיעין</span><span class="tag">ראשון לציון</span><span class="tag">תל אביב</span>
         </div>
         <p class="trainer-bio">Instrutor de capoeira e professor de educação física desde 2000, lecionando de crianças de 3 anos a adultos, vendo a capoeira como uma ferramenta para a vida.</p>
-        <a class="trainer-contact" href="tel:0502612094">📞 0502612094</a>
+        <div class="trainer-links">
+          <a class="trainer-contact" href="tel:0502612094">📞 0502612094</a>
+          <a href="https://wa.me/972502612094" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="WhatsApp">💬</a>
+          
+        </div>
       </div>
       
       <div class="card trainer-card" data-trainer-card data-cities="center">
         <div class="trainer-photo">
-          <img src="/assets/img/trainer-placeholder.svg" alt="אלחנן קירשברג" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.22.04-238x300.png" alt="אלחנן קירשברג" loading="lazy">
         </div>
         <h3 class="trainer-name">אלחנן קירשברג</h3>
         <span class="trainer-alias">Macarrão</span>
@@ -165,7 +240,7 @@
       
       <div class="card trainer-card" data-trainer-card data-cities="center">
         <div class="trainer-photo">
-          <img src="/assets/img/trainer-placeholder.svg" alt="פלוריאן ליבוביסי" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.22.20.png" alt="פלוריאן ליבוביסי" loading="lazy">
         </div>
         <h3 class="trainer-name">פלוריאן ליבוביסי</h3>
         <span class="trainer-alias">Coyote</span>
@@ -173,12 +248,13 @@
           <span class="tag">תל אביב</span>
         </div>
         <p class="trainer-bio">Pratica capoeira desde 1999 na França, em Israel desde 2007 e hoje é Professor; dá aulas para adultos em Tel Aviv aos domingos e sextas.</p>
+        <div class="trainer-links"><a href="https://www.coing.co/TLV_Kalisher-5_classes_adults/168497" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="הרשמה">🔗</a></div>
         
       </div>
       
       <div class="card trainer-card" data-trainer-card data-cities="center">
         <div class="trainer-photo">
-          <img src="/assets/img/trainer-placeholder.svg" alt="לוטן מגר" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.20.11-239x300.png" alt="לוטן מגר" loading="lazy">
         </div>
         <h3 class="trainer-name">לוטן מגר</h3>
         <span class="trainer-alias">Manequim</span>
@@ -186,12 +262,16 @@
           <span class="tag">מודיעין</span>
         </div>
         <p class="trainer-bio">Praticando desde 2001 e ensinando há mais de uma década; treinadora certificada de fitness e CrossFit, ensinando crianças, adolescentes e adultos em Modi'in.</p>
-        <a class="trainer-contact" href="tel:0522783962">📞 0522783962</a>
+        <div class="trainer-links">
+          <a class="trainer-contact" href="tel:0522783962">📞 0522783962</a>
+          <a href="https://wa.me/972522783962" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="WhatsApp">💬</a>
+          <a href="https://www.facebook.com/share/1E3Uh6e9rc/" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="Facebook">📘</a>
+        </div>
       </div>
       
       <div class="card trainer-card" data-trainer-card data-cities="center,jerusalem">
         <div class="trainer-photo">
-          <img src="/assets/img/trainer-placeholder.svg" alt="מיקי חייט" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.21.16-238x300.png" alt="מיקי חייט" loading="lazy">
         </div>
         <h3 class="trainer-name">מיקי חייט</h3>
         <span class="trainer-alias">Instrutor Gafanhoto</span>
@@ -204,7 +284,7 @@
       
       <div class="card trainer-card" data-trainer-card data-cities="jerusalem">
         <div class="trainer-photo">
-          <img src="/assets/img/trainer-placeholder.svg" alt="נעם בונו" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.21.52-239x300.png" alt="נעם בונו" loading="lazy">
         </div>
         <h3 class="trainer-name">נעם בונו</h3>
         <span class="trainer-alias">Gato Branco</span>
@@ -212,12 +292,16 @@
           <span class="tag">ירושלים</span>
         </div>
         <p class="trainer-bio">Praticando desde 1999, formado na primeira turma do curso de instrutores do Instituto Wingate e tetracampeão nacional; leciona de forma independente em Jerusalém desde 2009.</p>
-        <a class="trainer-contact" href="tel:0545815805">📞 0545815805</a>
+        <div class="trainer-links">
+          <a class="trainer-contact" href="tel:0545815805">📞 0545815805</a>
+          <a href="https://wa.me/972545815805" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="WhatsApp">💬</a>
+          <a href="https://instagram.com/gatobrancoabada" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="Instagram">📸</a> <a href="mailto:noambadcat@gmail.com" class="trainer-link-icon" aria-label="Email">✉️</a> <a href="https://t.me/WhiteCat_N" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="Telegram">✈️</a>
+        </div>
       </div>
       
       <div class="card trainer-card" data-trainer-card data-cities="north">
         <div class="trainer-photo">
-          <img src="/assets/img/trainer-placeholder.svg" alt="אילון קציר" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.23.12-240x300.png" alt="אילון קציר" loading="lazy">
         </div>
         <h3 class="trainer-name">אילון קציר</h3>
         <span class="trainer-alias">Graduado Banji</span>
@@ -225,12 +309,16 @@
           <span class="tag">יקנעם</span>
         </div>
         <p class="trainer-bio">Praticando há 16 anos, formado no curso de instrutores da ABADÁ; ensina todas as faixas etárias em Yokneam e arredores.</p>
-        <a class="trainer-contact" href="tel:0542298189">📞 0542298189</a>
+        <div class="trainer-links">
+          <a class="trainer-contact" href="tel:0542298189">📞 0542298189</a>
+          <a href="https://wa.me/972542298189" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="WhatsApp">💬</a>
+          
+        </div>
       </div>
       
       <div class="card trainer-card" data-trainer-card data-cities="north">
         <div class="trainer-photo">
-          <img src="/assets/img/trainer-placeholder.svg" alt="אמיר בן יעקב" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.23.56-237x300.png" alt="אמיר בן יעקב" loading="lazy">
         </div>
         <h3 class="trainer-name">אמיר בן יעקב</h3>
         <span class="trainer-alias">Dois Homens</span>
@@ -238,12 +326,16 @@
           <span class="tag">כרמיאל</span>
         </div>
         <p class="trainer-bio">Ex-engenheiro elétrico e jogador de basquete; pratica há 19 anos e é instrutor certificado com corda roxa-verde, ensinando em Karmiel e região.</p>
-        <a class="trainer-contact" href="tel:0523293066">📞 0523293066</a>
+        <div class="trainer-links">
+          <a class="trainer-contact" href="tel:0523293066">📞 0523293066</a>
+          <a href="https://wa.me/972523293066" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="WhatsApp">💬</a>
+          
+        </div>
       </div>
       
       <div class="card trainer-card" data-trainer-card data-cities="north">
         <div class="trainer-photo">
-          <img src="/assets/img/trainer-placeholder.svg" alt="נועה כחל צרפתי" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.22.59-240x300.png" alt="נועה כחל צרפתי" loading="lazy">
         </div>
         <h3 class="trainer-name">נועה כחל צרפתי</h3>
         <span class="trainer-alias">Instrutora Beterraba</span>
@@ -251,12 +343,13 @@
           <span class="tag">חיפה</span>
         </div>
         <p class="trainer-bio">Mãe de três filhos, pratica desde 2003 e tem 25 anos de experiência em educação; ensina em quatro centros de capoeira em Haifa para todas as idades.</p>
+        <div class="trainer-links"><a href="https://instagram.com/noa_capoeira" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="Instagram">📸</a></div>
         
       </div>
       
       <div class="card trainer-card" data-trainer-card data-cities="north">
         <div class="trainer-photo">
-          <img src="/assets/img/trainer-placeholder.svg" alt="תומר ארמה" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.24.14-241x300.png" alt="תומר ארמה" loading="lazy">
         </div>
         <h3 class="trainer-name">תומר ארמה</h3>
         <span class="trainer-alias">Vassoura</span>
@@ -264,12 +357,16 @@
           <span class="tag">חיפה</span><span class="tag">טבעון</span><span class="tag">פרדס חנה</span><span class="tag">עמק הירדן</span>
         </div>
         <p class="trainer-bio">Pratica há 21 anos e ensina há 17, certificado pelo Wingate em treinamento de artes marciais, com certificações adicionais em fitness e acrobacia; ensina em Haifa e região para todas as idades.</p>
-        <a class="trainer-contact" href="tel:0544983180">📞 0544983180</a>
+        <div class="trainer-links">
+          <a class="trainer-contact" href="tel:0544983180">📞 0544983180</a>
+          <a href="https://wa.me/972544983180" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="WhatsApp">💬</a>
+          
+        </div>
       </div>
       
       <div class="card trainer-card" data-trainer-card data-cities="north">
         <div class="trainer-photo">
-          <img src="/assets/img/trainer-placeholder.svg" alt="ערן ארפי" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.20.58-241x300.png" alt="ערן ארפי" loading="lazy">
         </div>
         <h3 class="trainer-name">ערן ארפי</h3>
         <span class="trainer-alias">Prof Potro</span>
@@ -277,12 +374,16 @@
           <span class="tag">טבעון</span><span class="tag">עמק יזרעאל</span><span class="tag">יקנעם</span><span class="tag">עמק הירדן</span><span class="tag">גולן</span><span class="tag">כרמיאל</span>
         </div>
         <p class="trainer-bio">Pratica desde 1996; hoje é Professor com corda marrom e 24 anos de experiência no ensino, com vasta atuação usando a capoeira com jovens em risco e pessoas com deficiência.</p>
-        <a class="trainer-contact" href="tel:0523878554">📞 0523878554</a>
+        <div class="trainer-links">
+          <a class="trainer-contact" href="tel:0523878554">📞 0523878554</a>
+          <a href="https://wa.me/972523878554" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="WhatsApp">💬</a>
+          
+        </div>
       </div>
       
       <div class="card trainer-card" data-trainer-card data-cities="north">
         <div class="trainer-photo">
-          <img src="/assets/img/trainer-placeholder.svg" alt="יעל דנון אלעד" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.23.25-239x300.png" alt="יעל דנון אלעד" loading="lazy">
         </div>
         <h3 class="trainer-name">יעל דנון אלעד</h3>
         <span class="trainer-alias">Arpa</span>
@@ -290,12 +391,13 @@
           <span class="tag">פרדס חנה</span>
         </div>
         <p class="trainer-bio">Instrutora de capoeira há mais de 20 anos, terapeuta pelo método Vardi e educadora que forma instrutores e desenvolve abordagens de movimento consciente.</p>
+        <div class="trainer-links"><a href="https://instagram.com/abadacapoeira_pardes_hanna" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="Instagram">📸</a></div>
         
       </div>
       
       <div class="card trainer-card" data-trainer-card data-cities="center">
         <div class="trainer-photo">
-          <img src="/assets/img/trainer-placeholder.svg" alt="שביט יחזקאל" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.22.47-239x300.png" alt="שביט יחזקאל" loading="lazy">
         </div>
         <h3 class="trainer-name">שביט יחזקאל</h3>
         <span class="trainer-alias">Instrutor Coquinho</span>
@@ -304,6 +406,40 @@
         </div>
         <p class="trainer-bio">Pratica desde 2004 e ensina desde 2016, com foco principal no ensino de crianças e adolescentes.</p>
         
+      </div>
+      
+      <div class="card trainer-card" data-trainer-card data-cities="north">
+        <div class="trainer-photo">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.24.26-238x300.png" alt="בונזיניו" loading="lazy">
+        </div>
+        <h3 class="trainer-name">בונזיניו</h3>
+        <span class="trainer-alias">Bonzinho</span>
+        <div class="trainer-cities">
+          <span class="tag">Vale do Jordão</span>
+        </div>
+        <p class="trainer-bio">Meu lema como professor é adaptar a capoeira ao aluno e o aluno à capoeira. Ensino no Vale do Jordão — aulas para crianças, jovens e adultos, às segundas e quintas.</p>
+        <div class="trainer-links">
+          <a class="trainer-contact" href="tel:0586749102">📞 0586749102</a>
+          <a href="https://wa.me/972586749102" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="WhatsApp">💬</a>
+          
+        </div>
+      </div>
+      
+      <div class="card trainer-card" data-trainer-card data-cities="south">
+        <div class="trainer-photo">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.22.32-e1763509525561-300x288.png" alt="איתי כהן" loading="lazy">
+        </div>
+        <h3 class="trainer-name">איתי כהן</h3>
+        <span class="trainer-alias">Professor Barbante</span>
+        <div class="trainer-cities">
+          <span class="tag">Beer Sheva</span>
+        </div>
+        <p class="trainer-bio">37 anos, casado com Yaara e pai de Arbel. Pratica capoeira desde 2000, compete em alto nível internacional desde 2009 e é treinador mental certificado. Ensina em Beer Sheva todos os dias da semana, para todas as idades — dos 3 anos à melhor idade.</p>
+        <div class="trainer-links">
+          <a class="trainer-contact" href="tel:0543134566">📞 0543134566</a>
+          <a href="https://wa.me/972543134566" target="_blank" rel="noopener" class="trainer-link-icon" aria-label="WhatsApp">💬</a>
+          
+        </div>
       </div>
       
     </div>
@@ -339,7 +475,6 @@
         <h4>Explorar</h4>
         <a href="/pt/about/">Quem Somos</a>
         <a href="/pt/trainers/">Instrutores</a>
-        <a href="/pt/events/">Eventos</a>
         <a href="/pt/gallery/">Galeria</a>
         <a href="/pt/corporate/">Para Empresas</a>
       </div>
