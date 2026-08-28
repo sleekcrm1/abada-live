@@ -197,67 +197,65 @@
     });
   }
 
-  /* ---------- Mobile hero background: real device-orientation tilt ----------
-     As the phone physically tilts, gamma (left-right) and beta (front-back)
-     rotation values drive a subtle 3D rotateX/rotateY on the fixed background
-     image, smoothed with a simple lerp each frame. iOS 13+ requires an
-     explicit permission prompt triggered by a user gesture, so we request
-     it on first tap/click; Android and older iOS get events immediately. */
-  const heroMobileBg = document.querySelector(".hero-mobile-bg");
-  if (heroMobileBg && window.matchMedia("(max-width: 639px)").matches) {
-    const MAX_TILT = 7; // degrees, kept subtle
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    let tiltActive = false;
+  /* ---------- Mobile hero background: pointer/touch-driven 3D parallax ----------
+     Permission-free alternative to device-orientation tilt (no iOS motion
+     prompt). Tracks pointer/touch position anywhere on the page, normalizes
+     it to [-1, 1], and exposes it as --norm-x/--norm-y on the .hero root —
+     the actual translate3d/rotateX/rotateY math lives in CSS via calc(),
+     scaled per-layer by that layer's own --depth. Background layers keep
+     pointer-events:none so this never blocks taps on real buttons/links. */
+  const heroEl = document.querySelector(".hero");
+  if (heroEl) {
+    let dragging = false;
 
-    function handleOrientation(e) {
-      if (e.beta === null || e.gamma === null) return;
-      const gamma = Math.max(-45, Math.min(45, e.gamma || 0));
-      // Phones are typically held ~40-50° back from vertical; recenter beta around that.
-      const beta = Math.max(-45, Math.min(45, (e.beta || 0) - 45));
-      targetY = (gamma / 45) * MAX_TILT;
-      targetX = -(beta / 45) * MAX_TILT;
+    function setNorm(x, y) {
+      const normX = (x / window.innerWidth) * 2 - 1;
+      const normY = (y / window.innerHeight) * 2 - 1;
+      heroEl.style.setProperty("--norm-x", normX.toFixed(4));
+      heroEl.style.setProperty("--norm-y", normY.toFixed(4));
     }
 
-    function animateTilt() {
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-      heroMobileBg.style.transform =
-        `rotateX(${currentX.toFixed(2)}deg) rotateY(${currentY.toFixed(2)}deg) scale(1.05)`;
-      window.requestAnimationFrame(animateTilt);
+    function startDrag(x, y) {
+      dragging = true;
+      heroEl.querySelectorAll(".spring-back").forEach((el) => el.classList.remove("spring-back"));
+      setNorm(x, y);
     }
 
-    function startTilt() {
-      if (tiltActive) return;
-      tiltActive = true;
-      window.addEventListener("deviceorientation", handleOrientation);
-      animateTilt();
+    function endDrag() {
+      if (!dragging) return;
+      dragging = false;
+      heroEl.querySelectorAll(".hero-mobile-bg, .hero-video").forEach((el) => el.classList.add("spring-back"));
+      heroEl.style.setProperty("--norm-x", 0);
+      heroEl.style.setProperty("--norm-y", 0);
     }
 
-    if (
-      typeof DeviceOrientationEvent !== "undefined" &&
-      typeof DeviceOrientationEvent.requestPermission === "function"
-    ) {
-      // iOS 13+: motion access requires a user gesture.
-      const requestTiltPermission = () => {
-        DeviceOrientationEvent.requestPermission()
-          .then((state) => {
-            if (state === "granted") startTilt();
-          })
-          .catch(() => {
-            /* permission denied or unsupported — image stays static, no harm done */
-          });
-        document.removeEventListener("click", requestTiltPermission);
-        document.removeEventListener("touchend", requestTiltPermission);
-      };
-      document.addEventListener("click", requestTiltPermission, { once: true });
-      document.addEventListener("touchend", requestTiltPermission, { once: true });
-    } else if (typeof DeviceOrientationEvent !== "undefined") {
-      // Android and older iOS — no permission gate needed.
-      startTilt();
-    }
+    // Event delegation on window, passive, so scrolling/dragging over
+    // buttons and links never gets interrupted by coordinate tracking.
+    window.addEventListener(
+      "pointermove",
+      (e) => {
+        if (dragging) setNorm(e.clientX, e.clientY);
+      },
+      { passive: true }
+    );
+    window.addEventListener(
+      "touchmove",
+      (e) => {
+        if (dragging && e.touches[0]) setNorm(e.touches[0].clientX, e.touches[0].clientY);
+      },
+      { passive: true }
+    );
+    window.addEventListener("pointerdown", (e) => startDrag(e.clientX, e.clientY), { passive: true });
+    window.addEventListener(
+      "touchstart",
+      (e) => {
+        if (e.touches[0]) startDrag(e.touches[0].clientX, e.touches[0].clientY);
+      },
+      { passive: true }
+    );
+    ["pointerup", "pointerleave", "touchend", "touchcancel"].forEach((evt) =>
+      window.addEventListener(evt, endDrag, { passive: true })
+    );
   }
 
   /* ---------- Hero background fade-on-scroll (readability) ----------
@@ -265,7 +263,6 @@
      fades out so the atmospheric effects and page content underneath
      stay clean and uncluttered. Single lightweight listener, only runs
      on pages that actually have a .hero. */
-  const heroEl = document.querySelector(".hero");
   if (heroEl) {
     const heroBg = heroEl.querySelector(".hero-bg");
     let heroTicking = false;
