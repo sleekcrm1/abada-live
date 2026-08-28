@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800">
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b6ca3"/>
+      <stop offset="1" stop-color="#1c2541"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="800" fill="url(#skyGrad)"/>
+  <circle cx="320" cy="430" r="230" fill="none" stroke="#d9a441" stroke-width="4" stroke-dasharray="2 14" opacity=".6"/>
+  <!-- figures in ginga around the roda -->
+  <g fill="#f2c869" opacity=".95">
+    <circle cx="320" cy="230" r="16"/>
+    <circle cx="470" cy="320" r="16"/>
+    <circle cx="470" cy="500" r="16"/>
+    <circle cx="320" cy="600" r="16"/>
+    <circle cx="170" cy="500" r="16"/>
+    <circle cx="170" cy="320" r="16"/>
+  </g>
+  <!-- two central kicking figures -->
+  <g fill="#faf7f0">
+    <path d="M300 470c-4-30 10-56 34-70 8-5 18 2 15 12l-10 34 26 8c9 3 10 16 1 20l-40 16c-14 6-24-2-26-20z"/>
+    <path d="M340 470c4-30-10-56-34-70-8-5-18 2-15 12l10 34-26 8c-9 3-10 16-1 20l40 16c14 6 24-2 26-20z"/>
+  </g>
+  <circle cx="320" cy="380" r="10" fill="#faf7f0"/>
+</svg>
