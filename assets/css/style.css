@@ -311,6 +311,8 @@ button { font-family: inherit; cursor: pointer; }
   bottom: 20px;
   right: 20px; /* always the physical bottom-right corner, regardless of RTL/LTR */
   z-index: 210;
+  width: fit-content;
+  display: inline-block;
 }
 
 .floating-controls-left {
@@ -318,6 +320,8 @@ button { font-family: inherit; cursor: pointer; }
   bottom: 20px;
   left: 20px; /* always the physical bottom-left corner, regardless of RTL/LTR */
   z-index: 210;
+  width: fit-content;
+  display: inline-block;
 }
 
 .menu-fab-fixed {
@@ -325,6 +329,8 @@ button { font-family: inherit; cursor: pointer; }
   top: 20px;
   right: 20px; /* always the physical top-right corner, regardless of RTL/LTR */
   z-index: 210;
+  width: fit-content;
+  display: inline-block;
 }
 
 .menu-fab {
@@ -665,12 +671,8 @@ button { font-family: inherit; cursor: pointer; }
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: var(--color-navy);
+  background: transparent; /* both themes: let atmospheric effects (stars/moon/clouds) show through */
 }
-/* Light mode: no solid navy fallback — let the page's own cream
-   background (and the cloud ambience) show through instead. Dark mode
-   keeps navy since it matches the night theme. */
-html:not([data-theme="dark"]) .hero-bg { background: transparent; }
 
 .hero-video {
   position: absolute;
@@ -689,7 +691,7 @@ html:not([data-theme="dark"]) .hero-bg { background: transparent; }
   background-position: center bottom;
   background-repeat: no-repeat;
 }
-html:not([data-theme="dark"]) .hero-mobile-bg { background-color: transparent; }
+.hero-mobile-bg { background-color: transparent; }
 
 /* ========== BACKGROUND AMBIENCE (site-wide, full) ==========
    The complete day/night atmosphere, restored: a rotating wireframe
@@ -755,15 +757,15 @@ body { --scroll-p: 0; }
 .atmo-eclipse {
   position: fixed;
   inset: 0;
-  background: rgba(27, 58, 82, 0.12);
+  background: rgba(27, 58, 82, 0.22);
   z-index: 0;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transition: opacity 1.2s ease;
 }
-html:not([data-theme="dark"]) .atmo-eclipse { animation: atmo-eclipse-pulse 24s linear infinite; }
+html:not([data-theme="dark"]) .atmo-eclipse { animation: atmo-eclipse-pulse 22s ease-in-out infinite; }
 [data-theme="dark"] .atmo-eclipse { display: none; }
-@keyframes atmo-eclipse-pulse { 0%, 65% { opacity: 0; } 70%, 74% { opacity: 1; } 79%, 100% { opacity: 0; } }
+@keyframes atmo-eclipse-pulse { 0%, 58% { opacity: 0; } 68%, 78% { opacity: 1; } 90%, 100% { opacity: 0; } }
 
 /* Dark mode: stars + slow-drifting planets/asteroids */
 .atmo-stars {
@@ -816,7 +818,7 @@ html:not([data-theme="dark"]) .atmo-eclipse { animation: atmo-eclipse-pulse 24s 
 /* Light mode: soft drifting clouds */
 .atmo-clouds { position: fixed; inset: 0; z-index: 0; pointer-events: none; display: block; overflow: hidden; }
 [data-theme="dark"] .atmo-clouds { display: none; }
-.atmo-cloud { position: absolute; background: rgba(255,255,255,0.85); border-radius: 50px; filter: blur(8px); }
+.atmo-cloud { position: absolute; background: rgba(255,255,255,0.92); border-radius: 50px; filter: blur(8px); }
 .atmo-cloud::before, .atmo-cloud::after { content: ""; position: absolute; background: inherit; border-radius: 50%; }
 .atmo-cloud-1 { top: 12vh; left: -40vw; width: 140px; height: 40px; animation: atmo-cloud-drift 24s linear infinite; }
 .atmo-cloud-1::before { width: 70px; height: 70px; top: -35px; left: 20px; }
@@ -844,8 +846,8 @@ html:not([data-theme="dark"]) .atmo-eclipse { animation: atmo-eclipse-pulse 24s 
   position: absolute;
   top: 8%;
   inset-inline-end: 10%;
-  width: 46px;
-  height: 46px;
+  width: 58px;
+  height: 58px;
   z-index: 2;
 }
 
@@ -859,7 +861,7 @@ html:not([data-theme="dark"]) .atmo-eclipse { animation: atmo-eclipse-pulse 24s 
 
 .celestial-container .sun {
   background: var(--sun-color);
-  box-shadow: 0 0 15px rgba(255, 216, 115, 0.6), 0 0 35px rgba(255, 152, 0, 0.4);
+  box-shadow: 0 0 20px rgba(255, 216, 115, 0.55), 0 0 42px rgba(255, 178, 80, 0.35);
   transform: translateX(0) scale(1);
   opacity: 1;
 }
@@ -870,7 +872,7 @@ html:not([data-theme="dark"]) .atmo-eclipse { animation: atmo-eclipse-pulse 24s 
 
 .celestial-container .moon {
   background: var(--moon-color);
-  box-shadow: 0 0 15px rgba(232, 228, 240, 0.6), 0 0 30px rgba(168, 178, 196, 0.4), inset -6px -6px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 0 18px rgba(232, 228, 240, 0.5), 0 0 36px rgba(168, 178, 196, 0.3), inset -6px -6px 12px rgba(0,0,0,0.16);
   transform: translateX(60vw) scale(0.5);
   opacity: 0;
 }
@@ -887,16 +889,15 @@ html:not([data-theme="dark"]) .atmo-eclipse { animation: atmo-eclipse-pulse 24s 
   position: absolute;
   inset: 0;
   z-index: 1;
-  background:
-    linear-gradient(180deg, rgba(27,58,82,.55) 0%, rgba(27,58,82,.78) 55%, rgba(27,58,82,.94) 100%);
+  background: linear-gradient(180deg, rgba(15,20,32,.28) 0%, rgba(15,20,32,.45) 100%);
 }
 
-/* Light mode (mobile AND desktop): no navy wash over the background photo
-   or video — only a small glass panel sits directly behind the text block
-   itself, so the imagery/animation stays fully visible. Dark mode keeps
-   the full navy overlay since it matches the night theme and is needed
-   for contrast over the video. */
+/* Both themes: no heavy navy wash over the background photo/video — just a
+   light gradient for readability, plus text-shadow on the copy itself, so
+   the imagery and atmospheric effects (stars, moon, clouds) stay visible
+   through the hero on mobile and desktop alike. */
 html:not([data-theme="dark"]) .hero-overlay { display: none; }
+[data-theme="dark"] .hero-overlay { background: linear-gradient(180deg, rgba(8,12,20,.35) 0%, rgba(8,12,20,.55) 100%); }
 
 html:not([data-theme="dark"]) .hero-copy .hero-eyebrow {
   background: rgba(15, 20, 32, 0.55);
@@ -905,6 +906,14 @@ html:not([data-theme="dark"]) .hero-copy .hero-eyebrow {
 html:not([data-theme="dark"]) .hero-copy h1,
 html:not([data-theme="dark"]) .hero-copy p.lead {
   text-shadow: 0 2px 10px rgba(0,0,0,.55), 0 1px 3px rgba(0,0,0,.6);
+}
+[data-theme="dark"] .hero-copy .hero-eyebrow {
+  background: rgba(8, 12, 20, 0.5);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+[data-theme="dark"] .hero-copy h1,
+[data-theme="dark"] .hero-copy p.lead {
+  text-shadow: 0 2px 14px rgba(0,0,0,.75), 0 1px 4px rgba(0,0,0,.8);
 }
 
 .hero-cutouts { display: none; } /* shown from tablet breakpoint up */
@@ -922,10 +931,10 @@ html:not([data-theme="dark"]) .hero-copy p.lead {
 }
 
 .hero-logo-mobile {
-  width: 168px;
-  height: 168px;
+  width: 196px;
+  height: 196px;
   object-fit: contain;
-  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.5));
   margin-bottom: 14px;
 }
 
