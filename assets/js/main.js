@@ -117,6 +117,116 @@
     });
   }
 
+  /* ---------- Draggable menu button ----------
+     The menu button can be dragged anywhere on screen (like a floating
+     assistive-touch handle). A short drag threshold distinguishes a tap
+     (opens the menu) from an actual drag (repositions it). Position is
+     remembered between visits via localStorage. */
+  const menuFabFixed = document.querySelector(".menu-fab-fixed");
+  if (menuFabFixed) {
+    const POS_KEY = "aci-menu-fab-pos";
+    let dragging = false;
+    let moved = false;
+    let startX = 0, startY = 0, origLeft = 0, origTop = 0;
+
+    try {
+      const saved = JSON.parse(localStorage.getItem(POS_KEY));
+      if (saved && typeof saved.left === "number" && typeof saved.top === "number") {
+        menuFabFixed.style.left = saved.left + "px";
+        menuFabFixed.style.top = saved.top + "px";
+        menuFabFixed.style.right = "auto";
+      }
+    } catch (e) {
+      /* ignore corrupt/blocked storage */
+    }
+
+    const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
+
+    menuFabFixed.addEventListener("pointerdown", (e) => {
+      dragging = true;
+      moved = false;
+      const rect = menuFabFixed.getBoundingClientRect();
+      origLeft = rect.left;
+      origTop = rect.top;
+      startX = e.clientX;
+      startY = e.clientY;
+      menuFabFixed.setPointerCapture(e.pointerId);
+    });
+
+    menuFabFixed.addEventListener("pointermove", (e) => {
+      if (!dragging) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      if (Math.abs(dx) > 6 || Math.abs(dy) > 6) moved = true;
+      if (!moved) return;
+      const rect = menuFabFixed.getBoundingClientRect();
+      const newLeft = clamp(origLeft + dx, 8, window.innerWidth - rect.width - 8);
+      const newTop = clamp(origTop + dy, 8, window.innerHeight - rect.height - 8);
+      menuFabFixed.style.left = newLeft + "px";
+      menuFabFixed.style.top = newTop + "px";
+      menuFabFixed.style.right = "auto";
+    });
+
+    menuFabFixed.addEventListener("pointerup", (e) => {
+      if (!dragging) return;
+      dragging = false;
+      if (moved) {
+        const rect = menuFabFixed.getBoundingClientRect();
+        try {
+          localStorage.setItem(POS_KEY, JSON.stringify({ left: rect.left, top: rect.top }));
+        } catch (err) {
+          /* ignore */
+        }
+        // Suppress the click that would otherwise fire right after a drag
+        const suppressClick = (ev) => {
+          ev.stopPropagation();
+          ev.preventDefault();
+        };
+        menuFabFixed.addEventListener("click", suppressClick, { capture: true, once: true });
+      }
+    });
+
+    // Keep the button on-screen if the viewport is resized/rotated
+    window.addEventListener("resize", () => {
+      if (menuFabFixed.style.left === "") return;
+      const rect = menuFabFixed.getBoundingClientRect();
+      const newLeft = clamp(rect.left, 8, window.innerWidth - rect.width - 8);
+      const newTop = clamp(rect.top, 8, window.innerHeight - rect.height - 8);
+      menuFabFixed.style.left = newLeft + "px";
+      menuFabFixed.style.top = newTop + "px";
+    });
+  }
+
+  /* ---------- Hero background fade-on-scroll (readability) ----------
+     As the visitor scrolls past the hero, the background photo/video
+     fades out so the atmospheric effects and page content underneath
+     stay clean and uncluttered. Single lightweight listener, only runs
+     on pages that actually have a .hero. */
+  const heroEl = document.querySelector(".hero");
+  if (heroEl) {
+    const heroBg = heroEl.querySelector(".hero-bg");
+    let heroTicking = false;
+    function updateHeroFade() {
+      const rect = heroEl.getBoundingClientRect();
+      const fadeDistance = rect.height * 0.7;
+      const scrolledPast = Math.max(0, -rect.top);
+      const opacity = Math.max(0, 1 - scrolledPast / fadeDistance);
+      if (heroBg) heroBg.style.opacity = opacity.toFixed(3);
+      heroTicking = false;
+    }
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!heroTicking) {
+          window.requestAnimationFrame(updateHeroFade);
+          heroTicking = true;
+        }
+      },
+      { passive: true }
+    );
+    updateHeroFade();
+  }
+
   /* ---------- Achievements slider dots ---------- */
   const achvSlider = document.querySelector("[data-achv-slider]");
   const achvDotsWrap = document.querySelector("[data-achv-dots]");
