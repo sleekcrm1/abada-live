@@ -28,13 +28,13 @@
 
   --container: 1140px;
 
-  --bg: #BFE4F7;
+  --bg: #7CC4EE;
   --bg-elevated: var(--color-white);
   --fg: var(--color-ink);
   --fg-soft: var(--color-ink-soft);
   --accent: var(--color-green);
   --accent-2: var(--color-green);
-  --line: rgba(27, 58, 82, 0.12);
+  --line: rgba(20, 45, 65, 0.16);
 
   /* Axé sticky-stack / celestial system (light mode) */
   --glass-bg: rgba(255, 255, 255, 0.85);
@@ -533,6 +533,15 @@ button { font-family: inherit; cursor: pointer; }
   z-index: 50;
 }
 
+/* The floating language button sits near the bottom of the screen, so its
+   dropdown must open upward instead of down (which would push it off-screen). */
+.floating-controls-left .lang-menu {
+  top: auto;
+  bottom: calc(100% + 6px);
+  inset-inline-start: 0;
+  inset-inline-end: auto;
+}
+
 .lang-menu a {
   display: flex;
   align-items: center;
@@ -675,8 +684,6 @@ button { font-family: inherit; cursor: pointer; }
   inset: 0;
   z-index: 0;
   background: transparent; /* both themes: let atmospheric effects (stars/moon/clouds) show through */
-  -webkit-mask-image: linear-gradient(180deg, black 0%, black 40%, transparent 88%);
-  mask-image: linear-gradient(180deg, black 0%, black 40%, transparent 88%);
   transition: opacity 0.4s ease;
 }
 
@@ -693,11 +700,9 @@ button { font-family: inherit; cursor: pointer; }
   position: absolute;
   inset: 0;
   background-color: transparent;
-  background-size: contain;   /* full image visible, never cropped/zoomed */
+  background-size: 88% auto;   /* slightly smaller than full width — opens empty space above for the text, image stays fully visible/unfaded */
   background-position: center bottom;
   background-repeat: no-repeat;
-  -webkit-mask-image: linear-gradient(180deg, black 0%, black 35%, transparent 82%);
-  mask-image: linear-gradient(180deg, black 0%, black 35%, transparent 82%);
   transition: opacity 0.4s ease;
 }
 
@@ -786,18 +791,21 @@ html:not([data-theme="dark"]) .atmo-eclipse { animation: atmo-eclipse-pulse 22s 
 [data-theme="dark"] .atmo-stars {
   display: block;
   background-image:
-    radial-gradient(1px 1px at 20% 30%, #fff, transparent),
-    radial-gradient(1.5px 1.5px at 60% 15%, #fff, transparent),
-    radial-gradient(1.5px 1.5px at 80% 65%, #fff, transparent),
-    radial-gradient(2px 2px at 30% 75%, #fff, transparent),
-    radial-gradient(1px 1px at 50% 50%, #fff, transparent),
-    radial-gradient(1px 1px at 90% 40%, #fff, transparent),
-    radial-gradient(1.5px 1.5px at 10% 90%, #fff, transparent);
-  background-size: 300px 300px;
-  opacity: 0.55;
+    radial-gradient(1.5px 1.5px at 20% 30%, #fff, transparent),
+    radial-gradient(2px 2px at 60% 15%, #fff, transparent),
+    radial-gradient(2px 2px at 80% 65%, #fff, transparent),
+    radial-gradient(2.5px 2.5px at 30% 75%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 50% 50%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 90% 40%, #fff, transparent),
+    radial-gradient(2px 2px at 10% 90%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 40% 10%, #fff, transparent),
+    radial-gradient(2px 2px at 70% 85%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 5% 55%, #fff, transparent);
+  background-size: 280px 280px;
+  opacity: 0.85;
   animation: atmo-twinkle 5s ease-in-out infinite alternate;
 }
-@keyframes atmo-twinkle { 0% { transform: scale(0.98); } 100% { transform: scale(1.02); } }
+@keyframes atmo-twinkle { 0% { opacity: 0.7; } 100% { opacity: 1; } }
 
 .atmo-planet {
   position: absolute;
@@ -1340,11 +1348,19 @@ html:not([data-theme="dark"]) .hero-eyebrow {
 /* ========== FOOTER — MOBILE ========== */
 .site-footer {
   position: relative;
-  background: linear-gradient(180deg, color-mix(in srgb, var(--color-navy) 75%, #8FCBEF) 0%, var(--color-navy) 90px);
-  color: rgba(245, 240, 232, 0.7);
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(245, 240, 232, 0.85);
   padding-block: 28px 16px;
   margin-top: 32px;
   overflow: hidden;
+}
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--color-navy) 45%, transparent) 0%, color-mix(in srgb, var(--color-navy) 88%, transparent) 100%);
 }
 .footer-mobile-bg {
   position: absolute;
@@ -1355,8 +1371,9 @@ html:not([data-theme="dark"]) .hero-eyebrow {
   opacity: 0.18;
   mix-blend-mode: luminosity;
 }
-.footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 14px; margin-bottom: 18px; }
+.footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 14px; margin-bottom: 18px; align-items: start; }
 .footer-grid > div:first-child { grid-column: 1 / -1; }
+.footer-grid > div { text-align: center; }
 .site-footer h4 { color: var(--color-cream); font-size: 0.80rem; margin-bottom: 6px; }
 .site-footer a { opacity: 0.8; display: block; padding-block: 3px; font-size: 0.80rem; transition: opacity 0.2s; }
 .site-footer a:hover { opacity: 1; color: var(--color-gold-light); }
@@ -1373,7 +1390,7 @@ html:not([data-theme="dark"]) .hero-eyebrow {
   flex-direction: column;
   gap: 8px;
 }
-.site-footer .brand img { width: 72px; height: 72px; }
+.site-footer .brand img { width: 88px; height: 88px; }
 .site-footer p { font-size: 0.80rem !important; margin-bottom: 10px !important; max-width: 34ch; }
 
 .footer-bottom {
@@ -1614,7 +1631,7 @@ html:not([data-theme="dark"]) .hero-eyebrow {
   /* Tablet+: back to a horizontal row, bigger logo than mobile */
   .footer-grid > div:first-child { align-items: flex-start; text-align: start; }
   .site-footer .brand { flex-direction: row; }
-  .site-footer .brand img { width: 68px; height: 68px; }
+  .site-footer .brand img { width: 80px; height: 80px; }
   .site-footer p { max-width: 32ch; }
 
   .contact-grid { grid-template-columns: 1fr 1fr; gap: 48px; }
@@ -1633,7 +1650,7 @@ html:not([data-theme="dark"]) .hero-eyebrow {
   
   .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
 
-  .site-footer .brand img { width: 84px; height: 84px; }
+  .site-footer .brand img { width: 100px; height: 100px; }
   
   .masonry { columns: 4 220px; column-gap: 20px; }
 
