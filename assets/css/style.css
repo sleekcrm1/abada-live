@@ -709,7 +709,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .hero-mobile-bg {
-  position: absolute;
+  position: fixed;
   inset: -10%; /* oversized so parallax movement never reveals an edge */
   width: 120%;
   height: 120%;
