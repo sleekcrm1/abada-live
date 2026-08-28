@@ -538,8 +538,10 @@ button { font-family: inherit; cursor: pointer; }
 .floating-controls-left .lang-menu {
   top: auto;
   bottom: calc(100% + 6px);
-  inset-inline-start: 0;
-  inset-inline-end: auto;
+  left: 0;
+  right: auto;
+  inset-inline-start: unset;
+  inset-inline-end: unset;
 }
 
 .lang-menu a {
@@ -700,7 +702,7 @@ button { font-family: inherit; cursor: pointer; }
   position: absolute;
   inset: 0;
   background-color: transparent;
-  background-size: 88% auto;   /* slightly smaller than full width — opens empty space above for the text, image stays fully visible/unfaded */
+  background-size: 100% auto;   /* full width, image stays fully visible/unfaded */
   background-position: center bottom;
   background-repeat: no-repeat;
   transition: opacity 0.4s ease;
@@ -725,7 +727,7 @@ body { --scroll-p: 0; }
     linear-gradient(90deg, var(--line) 1px, transparent 1px);
   background-size: 60px 60px;
   transform: translateY(calc(var(--scroll-p, 0) * -150px));
-  opacity: 0.3;
+  opacity: 0.16;
   z-index: 0;
   pointer-events: none;
   -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 60%);
@@ -834,7 +836,7 @@ html:not([data-theme="dark"]) .atmo-eclipse { animation: atmo-eclipse-pulse 22s 
 /* Light mode: soft drifting clouds */
 .atmo-clouds { position: fixed; inset: 0; z-index: 0; pointer-events: none; display: block; overflow: hidden; }
 [data-theme="dark"] .atmo-clouds { display: none; }
-.atmo-cloud { position: absolute; background: rgba(255,255,255,0.92); border-radius: 50px; filter: blur(8px); }
+.atmo-cloud { position: absolute; background: rgba(255,255,255,0.78); border-radius: 50px; filter: blur(8px); }
 .atmo-cloud::before, .atmo-cloud::after { content: ""; position: absolute; background: inherit; border-radius: 50%; }
 .atmo-cloud-1 { top: 12vh; left: -40vw; width: 140px; height: 40px; animation: atmo-cloud-drift 24s linear infinite; }
 .atmo-cloud-1::before { width: 70px; height: 70px; top: -35px; left: 20px; }
@@ -942,7 +944,7 @@ html:not([data-theme="dark"]) .hero-copy p.lead {
   align-items: center;
   text-align: center;
   gap: 6px;
-  padding-block: 56px;
+  padding-block: 80px;
   width: 100%;
 }
 
@@ -1590,6 +1592,16 @@ html:not([data-theme="dark"]) .hero-eyebrow {
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
+  box-shadow: 0 -4px 20px rgba(0,0,0,.15);
+}
+html:not([data-theme="dark"]) #install-banner {
+  background: var(--bg-elevated);
+  color: var(--fg);
+  border-top: 1px solid var(--line);
+}
+html:not([data-theme="dark"]) #install-banner [data-install-btn] {
+  background: var(--accent);
+  color: #fff;
 }
 
 #install-banner.visible { display: flex; }
@@ -1609,7 +1621,7 @@ html:not([data-theme="dark"]) .hero-eyebrow {
   .nav-toggle { display: none; }
   
   .hero { min-height: 560px; }
-  .hero-video { display: block; }
+  .hero-video { display: block; filter: blur(2.5px) brightness(0.85); }
   .hero-mobile-bg { display: none; }
   .hero-logo-mobile { display: none; }
   .hero-inner { padding-block: 80px; }
