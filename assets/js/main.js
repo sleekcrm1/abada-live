@@ -197,6 +197,69 @@
     });
   }
 
+  /* ---------- Mobile hero background: real device-orientation tilt ----------
+     As the phone physically tilts, gamma (left-right) and beta (front-back)
+     rotation values drive a subtle 3D rotateX/rotateY on the fixed background
+     image, smoothed with a simple lerp each frame. iOS 13+ requires an
+     explicit permission prompt triggered by a user gesture, so we request
+     it on first tap/click; Android and older iOS get events immediately. */
+  const heroMobileBg = document.querySelector(".hero-mobile-bg");
+  if (heroMobileBg && window.matchMedia("(max-width: 639px)").matches) {
+    const MAX_TILT = 7; // degrees, kept subtle
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let tiltActive = false;
+
+    function handleOrientation(e) {
+      if (e.beta === null || e.gamma === null) return;
+      const gamma = Math.max(-45, Math.min(45, e.gamma || 0));
+      // Phones are typically held ~40-50° back from vertical; recenter beta around that.
+      const beta = Math.max(-45, Math.min(45, (e.beta || 0) - 45));
+      targetY = (gamma / 45) * MAX_TILT;
+      targetX = -(beta / 45) * MAX_TILT;
+    }
+
+    function animateTilt() {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+      heroMobileBg.style.transform =
+        `rotateX(${currentX.toFixed(2)}deg) rotateY(${currentY.toFixed(2)}deg) scale(1.05)`;
+      window.requestAnimationFrame(animateTilt);
+    }
+
+    function startTilt() {
+      if (tiltActive) return;
+      tiltActive = true;
+      window.addEventListener("deviceorientation", handleOrientation);
+      animateTilt();
+    }
+
+    if (
+      typeof DeviceOrientationEvent !== "undefined" &&
+      typeof DeviceOrientationEvent.requestPermission === "function"
+    ) {
+      // iOS 13+: motion access requires a user gesture.
+      const requestTiltPermission = () => {
+        DeviceOrientationEvent.requestPermission()
+          .then((state) => {
+            if (state === "granted") startTilt();
+          })
+          .catch(() => {
+            /* permission denied or unsupported — image stays static, no harm done */
+          });
+        document.removeEventListener("click", requestTiltPermission);
+        document.removeEventListener("touchend", requestTiltPermission);
+      };
+      document.addEventListener("click", requestTiltPermission, { once: true });
+      document.addEventListener("touchend", requestTiltPermission, { once: true });
+    } else if (typeof DeviceOrientationEvent !== "undefined") {
+      // Android and older iOS — no permission gate needed.
+      startTilt();
+    }
+  }
+
   /* ---------- Hero background fade-on-scroll (readability) ----------
      As the visitor scrolls past the hero, the background photo/video
      fades out so the atmospheric effects and page content underneath

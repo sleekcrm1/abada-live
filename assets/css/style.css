@@ -695,27 +695,29 @@ button { font-family: inherit; cursor: pointer; }
   display: none; /* video reserved for tablet+ to save mobile data */
 }
 
-.hero-mobile-bg {
+.hero-bg-tilt-wrap {
   position: fixed;
   inset: 0;
   z-index: 0;
+  perspective: 900px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-mobile-bg {
+  position: absolute;
+  inset: -6%; /* slightly oversized so the tilt never reveals an edge */
   background-color: transparent;
   background-size: 100% auto;   /* full width, image stays fully visible/unfaded */
   background-position: center bottom;
   background-repeat: no-repeat;
   transition: opacity 0.4s ease;
-  transform-origin: center bottom;
-  animation: hero-bg-tilt 9s ease-in-out infinite;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg) rotateY(0deg) scale(1.05);
   will-change: transform;
 }
-@keyframes hero-bg-tilt {
-  0%, 100% { transform: perspective(900px) rotateX(0deg) rotateY(0deg) scale(1.03); }
-  25%      { transform: perspective(900px) rotateX(0.6deg) rotateY(-0.8deg) scale(1.03); }
-  50%      { transform: perspective(900px) rotateX(-0.5deg) rotateY(0.7deg) scale(1.03); }
-  75%      { transform: perspective(900px) rotateX(0.7deg) rotateY(0.6deg) scale(1.03); }
-}
 @media (prefers-reduced-motion: reduce) {
-  .hero-mobile-bg { animation: none; }
+  .hero-mobile-bg { transform: none !important; }
 }
 
 /* ========== BACKGROUND AMBIENCE (site-wide, full) ==========
