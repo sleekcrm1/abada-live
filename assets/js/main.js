@@ -204,6 +204,44 @@
     });
   }
 
+  /* ---------- Homepage stat counters (count up once visible) ---------- */
+  const statEls = document.querySelectorAll(".stat b");
+  if (statEls.length && "IntersectionObserver" in window) {
+    const parseTarget = (text) => {
+      const match = text.trim().match(/^(\d+)/);
+      return match ? parseInt(match[1], 10) : null;
+    };
+    const animateCount = (el, target, suffix) => {
+      const duration = 1400;
+      const start = performance.now();
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (progress < 1) window.requestAnimationFrame(step);
+      }
+      window.requestAnimationFrame(step);
+    };
+    const statObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const text = el.textContent;
+          const target = parseTarget(text);
+          if (target !== null) {
+            const suffix = text.trim().slice(String(target).length);
+            el.textContent = "0" + suffix;
+            animateCount(el, target, suffix);
+          }
+          statObserver.unobserve(el);
+        });
+      },
+      { threshold: 0.5 }
+    );
+    statEls.forEach((el) => statObserver.observe(el));
+  }
+
   let deferredPrompt = null;
   const banner = document.getElementById("install-banner");
   window.addEventListener("beforeinstallprompt", (e) => {

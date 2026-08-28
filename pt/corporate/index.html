@@ -115,8 +115,29 @@
   </div>
 </header>
 
-<div class="floating-controls">
-  <button class="sky-toggle" data-theme-toggle aria-label="Alternar tema">
+<div class="menu-fab-fixed">
+  <button class="menu-fab shimmer-btn" data-menu-fab aria-expanded="false" aria-label="Menu">
+    <span class="menu-fab-bars"><span></span><span></span><span></span></span>
+  </button>
+</div>
+
+<div class="floating-controls-left">
+  <details class="lang-switch shimmer-btn">
+        <summary>
+          🇧🇷
+          <span class="lang-switch-code">PT</span>
+        </summary>
+        <div class="lang-menu">
+          <a href="/he/corporate/" ><span class="lang-flag">🇮🇱</span> עברית</a>
+          <a href="/en/corporate/" ><span class="lang-flag">🇺🇸</span> English</a>
+          <a href="/pt/corporate/" style="color:var(--color-green);"><span class="lang-flag">🇧🇷</span> Português</a>
+          
+        </div>
+      </details>
+</div>
+
+<div class="floating-controls-right">
+  <button class="sky-toggle shimmer-btn" data-theme-toggle aria-label="Alternar tema">
         <span class="sky-toggle-track">
           <span class="sky-star sky-star-1"></span>
           <span class="sky-star sky-star-2"></span>
@@ -137,9 +158,6 @@
           </span>
         </span>
       </button>
-  <button class="menu-fab" data-menu-fab aria-expanded="false" aria-label="Menu">
-    <span class="menu-fab-bars"><span></span><span></span><span></span></span>
-  </button>
 </div>
 
 <div class="menu-overlay" data-menu-overlay>
@@ -155,24 +173,17 @@
       <a href="/pt/corporate/" aria-current="page">Para Empresas</a>
       <a href="/pt/contact/">Contato</a>
     </nav>
-    <details class="lang-switch">
-        <summary>
-          🇧🇷
-          <span class="lang-switch-code">PT</span>
-        </summary>
-        <div class="lang-menu">
-          <a href="/he/corporate/" ><span class="lang-flag">🇮🇱</span> עברית</a>
-          <a href="/en/corporate/" ><span class="lang-flag">🇺🇸</span> English</a>
-          <a href="/pt/corporate/" style="color:var(--color-gold);"><span class="lang-flag">🇧🇷</span> Português</a>
-          
-        </div>
-      </details>
   </div>
 </div>
 
 <main id="main">
 <section class="page-header">
   <div class="container" style="max-width:70ch;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/pt/">Início</a>
+      <span class="breadcrumb-sep">/</span>
+      <span aria-current="page">Para Empresas e Organizações</span>
+    </nav>
     <span class="hero-eyebrow">Para Empresas e Organizações</span>
     <h1>Manter-se em movimento quando a realidade muda</h1>
     <p class="lead">Sobrecarga. Prazos. Mudanças. Esgotamento. O mundo do trabalho exige que respondamos rápido, nos adaptemos, pensemos diferente — e continuemos trabalhando juntos mesmo quando o plano muda. Criamos uma atividade vivencial para organizações que treina exatamente essas capacidades — através de movimento, jogo, ritmo e interação humana.</p>
@@ -215,7 +226,7 @@
 
 <section class="section">
   <div class="container">
-    <div class="grid grid-3">
+    <div class="corp-photo-slider">
       <figure class="corp-photo"><img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1293-Background-Removed-scaled.png" alt="" loading="lazy"></figure>
       <figure class="corp-photo"><img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1260-Background-Removed-scaled.png" alt="" loading="lazy"></figure>
       <figure class="corp-photo"><img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1366-Background-Removed-scaled.png" alt="" loading="lazy"></figure>

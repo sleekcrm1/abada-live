@@ -115,8 +115,29 @@
   </div>
 </header>
 
-<div class="floating-controls">
-  <button class="sky-toggle" data-theme-toggle aria-label="החלף מצב תצוגה">
+<div class="menu-fab-fixed">
+  <button class="menu-fab shimmer-btn" data-menu-fab aria-expanded="false" aria-label="תפריט">
+    <span class="menu-fab-bars"><span></span><span></span><span></span></span>
+  </button>
+</div>
+
+<div class="floating-controls-left">
+  <details class="lang-switch shimmer-btn">
+        <summary>
+          🇮🇱
+          <span class="lang-switch-code">עברית</span>
+        </summary>
+        <div class="lang-menu">
+          <a href="/he/trainers/" style="color:var(--color-green);"><span class="lang-flag">🇮🇱</span> עברית</a>
+          <a href="/en/trainers/" ><span class="lang-flag">🇺🇸</span> English</a>
+          <a href="/pt/trainers/" ><span class="lang-flag">🇧🇷</span> Português</a>
+          
+        </div>
+      </details>
+</div>
+
+<div class="floating-controls-right">
+  <button class="sky-toggle shimmer-btn" data-theme-toggle aria-label="החלף מצב תצוגה">
         <span class="sky-toggle-track">
           <span class="sky-star sky-star-1"></span>
           <span class="sky-star sky-star-2"></span>
@@ -137,9 +158,6 @@
           </span>
         </span>
       </button>
-  <button class="menu-fab" data-menu-fab aria-expanded="false" aria-label="תפריט">
-    <span class="menu-fab-bars"><span></span><span></span><span></span></span>
-  </button>
 </div>
 
 <div class="menu-overlay" data-menu-overlay>
@@ -155,24 +173,17 @@
       <a href="/he/corporate/">ארגונים וחברות</a>
       <a href="/he/contact/">צור קשר</a>
     </nav>
-    <details class="lang-switch">
-        <summary>
-          🇮🇱
-          <span class="lang-switch-code">עברית</span>
-        </summary>
-        <div class="lang-menu">
-          <a href="/he/trainers/" style="color:var(--color-gold);"><span class="lang-flag">🇮🇱</span> עברית</a>
-          <a href="/en/trainers/" ><span class="lang-flag">🇺🇸</span> English</a>
-          <a href="/pt/trainers/" ><span class="lang-flag">🇧🇷</span> Português</a>
-          
-        </div>
-      </details>
   </div>
 </div>
 
 <main id="main">
 <section class="page-header">
   <div class="container" style="max-width:70ch;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/he/">בית</a>
+      <span class="breadcrumb-sep">/</span>
+      <span aria-current="page">הצוות שלנו</span>
+    </nav>
     <span class="hero-eyebrow">הצוות שלנו</span>
     <h1>מאמנים ומאמנות ברחבי הארץ</h1>
     <p class="lead">מעל 15 מדריכים מוסמכים המלמדים בעשרות ערים — מירוחם ועד הגולן. מצאו את הקרובים אליכם.</p>
@@ -193,7 +204,7 @@
       
       <div class="card trainer-card" data-trainer-card data-cities="center">
         <div class="trainer-photo">
-          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.23.39-238x300.png" alt="ליאת בן זקן" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.23.39.png" alt="ליאת בן זקן" loading="lazy">
         </div>
         <h3 class="trainer-name">ליאת בן זקן</h3>
         <span class="trainer-alias">Instrutora Risadinha</span>
@@ -227,7 +238,7 @@
       
       <div class="card trainer-card" data-trainer-card data-cities="center">
         <div class="trainer-photo">
-          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.22.04-238x300.png" alt="אלחנן קירשברג" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.22.04.png" alt="אלחנן קירשברג" loading="lazy">
         </div>
         <h3 class="trainer-name">אלחנן קירשברג</h3>
         <span class="trainer-alias">Macarrão</span>
@@ -254,7 +265,7 @@
       
       <div class="card trainer-card" data-trainer-card data-cities="center">
         <div class="trainer-photo">
-          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.20.11-239x300.png" alt="לוטן מגר" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.20.11.png" alt="לוטן מגר" loading="lazy">
         </div>
         <h3 class="trainer-name">לוטן מגר</h3>
         <span class="trainer-alias">Manequim</span>
@@ -271,7 +282,7 @@
       
       <div class="card trainer-card" data-trainer-card data-cities="center,jerusalem">
         <div class="trainer-photo">
-          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.21.16-238x300.png" alt="מיקי חייט" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.21.16.png" alt="מיקי חייט" loading="lazy">
         </div>
         <h3 class="trainer-name">מיקי חייט</h3>
         <span class="trainer-alias">Instrutor Gafanhoto</span>
@@ -284,7 +295,7 @@
       
       <div class="card trainer-card" data-trainer-card data-cities="jerusalem">
         <div class="trainer-photo">
-          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.21.52-239x300.png" alt="נעם בונו" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.21.52.png" alt="נעם בונו" loading="lazy">
         </div>
         <h3 class="trainer-name">נעם בונו</h3>
         <span class="trainer-alias">Gato Branco</span>
@@ -301,7 +312,7 @@
       
       <div class="card trainer-card" data-trainer-card data-cities="north">
         <div class="trainer-photo">
-          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.23.12-240x300.png" alt="אילון קציר" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.23.12.png" alt="אילון קציר" loading="lazy">
         </div>
         <h3 class="trainer-name">אילון קציר</h3>
         <span class="trainer-alias">Graduado Banji</span>
@@ -318,7 +329,7 @@
       
       <div class="card trainer-card" data-trainer-card data-cities="north">
         <div class="trainer-photo">
-          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.23.56-237x300.png" alt="אמיר בן יעקב" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.23.56.png" alt="אמיר בן יעקב" loading="lazy">
         </div>
         <h3 class="trainer-name">אמיר בן יעקב</h3>
         <span class="trainer-alias">Dois Homens</span>
@@ -335,7 +346,7 @@
       
       <div class="card trainer-card" data-trainer-card data-cities="north">
         <div class="trainer-photo">
-          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.22.59-240x300.png" alt="נועה כחל צרפתי" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.22.59.png" alt="נועה כחל צרפתי" loading="lazy">
         </div>
         <h3 class="trainer-name">נועה כחל צרפתי</h3>
         <span class="trainer-alias">Instrutora Beterraba</span>
@@ -349,7 +360,7 @@
       
       <div class="card trainer-card" data-trainer-card data-cities="north">
         <div class="trainer-photo">
-          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.24.14-241x300.png" alt="תומר ארמה" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.24.14.png" alt="תומר ארמה" loading="lazy">
         </div>
         <h3 class="trainer-name">תומר ארמה</h3>
         <span class="trainer-alias">Vassoura</span>
@@ -366,7 +377,7 @@
       
       <div class="card trainer-card" data-trainer-card data-cities="north">
         <div class="trainer-photo">
-          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.20.58-241x300.png" alt="ערן ארפי" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.20.58.png" alt="ערן ארפי" loading="lazy">
         </div>
         <h3 class="trainer-name">ערן ארפי</h3>
         <span class="trainer-alias">Prof Potro</span>
@@ -383,7 +394,7 @@
       
       <div class="card trainer-card" data-trainer-card data-cities="north">
         <div class="trainer-photo">
-          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.23.25-239x300.png" alt="יעל דנון אלעד" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.23.25.png" alt="יעל דנון אלעד" loading="lazy">
         </div>
         <h3 class="trainer-name">יעל דנון אלעד</h3>
         <span class="trainer-alias">Arpa</span>
@@ -397,7 +408,7 @@
       
       <div class="card trainer-card" data-trainer-card data-cities="center">
         <div class="trainer-photo">
-          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.22.47-239x300.png" alt="שביט יחזקאל" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.22.47.png" alt="שביט יחזקאל" loading="lazy">
         </div>
         <h3 class="trainer-name">שביט יחזקאל</h3>
         <span class="trainer-alias">Instrutor Coquinho</span>
@@ -410,7 +421,7 @@
       
       <div class="card trainer-card" data-trainer-card data-cities="north">
         <div class="trainer-photo">
-          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.24.26-238x300.png" alt="בונזיניו" loading="lazy">
+          <img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2025/11/Screen-Shot-2025-11-19-at-00.24.26.png" alt="בונזיניו" loading="lazy">
         </div>
         <h3 class="trainer-name">בונזיניו</h3>
         <span class="trainer-alias">Bonzinho</span>

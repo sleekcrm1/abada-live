@@ -115,8 +115,29 @@
   </div>
 </header>
 
-<div class="floating-controls">
-  <button class="sky-toggle" data-theme-toggle aria-label="החלף מצב תצוגה">
+<div class="menu-fab-fixed">
+  <button class="menu-fab shimmer-btn" data-menu-fab aria-expanded="false" aria-label="תפריט">
+    <span class="menu-fab-bars"><span></span><span></span><span></span></span>
+  </button>
+</div>
+
+<div class="floating-controls-left">
+  <details class="lang-switch shimmer-btn">
+        <summary>
+          🇮🇱
+          <span class="lang-switch-code">עברית</span>
+        </summary>
+        <div class="lang-menu">
+          <a href="/he/corporate/" style="color:var(--color-green);"><span class="lang-flag">🇮🇱</span> עברית</a>
+          <a href="/en/corporate/" ><span class="lang-flag">🇺🇸</span> English</a>
+          <a href="/pt/corporate/" ><span class="lang-flag">🇧🇷</span> Português</a>
+          
+        </div>
+      </details>
+</div>
+
+<div class="floating-controls-right">
+  <button class="sky-toggle shimmer-btn" data-theme-toggle aria-label="החלף מצב תצוגה">
         <span class="sky-toggle-track">
           <span class="sky-star sky-star-1"></span>
           <span class="sky-star sky-star-2"></span>
@@ -137,9 +158,6 @@
           </span>
         </span>
       </button>
-  <button class="menu-fab" data-menu-fab aria-expanded="false" aria-label="תפריט">
-    <span class="menu-fab-bars"><span></span><span></span><span></span></span>
-  </button>
 </div>
 
 <div class="menu-overlay" data-menu-overlay>
@@ -155,24 +173,17 @@
       <a href="/he/corporate/" aria-current="page">ארגונים וחברות</a>
       <a href="/he/contact/">צור קשר</a>
     </nav>
-    <details class="lang-switch">
-        <summary>
-          🇮🇱
-          <span class="lang-switch-code">עברית</span>
-        </summary>
-        <div class="lang-menu">
-          <a href="/he/corporate/" style="color:var(--color-gold);"><span class="lang-flag">🇮🇱</span> עברית</a>
-          <a href="/en/corporate/" ><span class="lang-flag">🇺🇸</span> English</a>
-          <a href="/pt/corporate/" ><span class="lang-flag">🇧🇷</span> Português</a>
-          
-        </div>
-      </details>
   </div>
 </div>
 
 <main id="main">
 <section class="page-header">
   <div class="container" style="max-width:70ch;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/he/">בית</a>
+      <span class="breadcrumb-sep">/</span>
+      <span aria-current="page">פעילות לארגונים וחברות</span>
+    </nav>
     <span class="hero-eyebrow">פעילות לארגונים וחברות</span>
     <h1>להישאר בתנועה כשהמציאות משתנה</h1>
     <p class="lead">עומס. דד־ליינים. שינויים. שחיקה. עולם העבודה דורש מאיתנו להגיב מהר, להסתגל, לחשוב אחרת – ולהמשיך לעבוד יחד גם כשהתוכנית משתנה. יצרנו פעילות חווייתית לארגונים שמתרגלת בדיוק את היכולות האלה – דרך תנועה, משחק, קצב ואינטראקציה אנושית.</p>
@@ -215,7 +226,7 @@
 
 <section class="section">
   <div class="container">
-    <div class="grid grid-3">
+    <div class="corp-photo-slider">
       <figure class="corp-photo"><img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1293-Background-Removed-scaled.png" alt="" loading="lazy"></figure>
       <figure class="corp-photo"><img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1260-Background-Removed-scaled.png" alt="" loading="lazy"></figure>
       <figure class="corp-photo"><img src="https://abadacapoeiraisrael.org.il/wp-content/uploads/2026/08/IMG_1366-Background-Removed-scaled.png" alt="" loading="lazy"></figure>

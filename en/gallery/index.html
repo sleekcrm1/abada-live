@@ -115,8 +115,29 @@
   </div>
 </header>
 
-<div class="floating-controls">
-  <button class="sky-toggle" data-theme-toggle aria-label="Toggle color scheme">
+<div class="menu-fab-fixed">
+  <button class="menu-fab shimmer-btn" data-menu-fab aria-expanded="false" aria-label="Menu">
+    <span class="menu-fab-bars"><span></span><span></span><span></span></span>
+  </button>
+</div>
+
+<div class="floating-controls-left">
+  <details class="lang-switch shimmer-btn">
+        <summary>
+          🇺🇸
+          <span class="lang-switch-code">EN</span>
+        </summary>
+        <div class="lang-menu">
+          <a href="/he/gallery/" ><span class="lang-flag">🇮🇱</span> עברית</a>
+          <a href="/en/gallery/" style="color:var(--color-green);"><span class="lang-flag">🇺🇸</span> English</a>
+          <a href="/pt/gallery/" ><span class="lang-flag">🇧🇷</span> Português</a>
+          
+        </div>
+      </details>
+</div>
+
+<div class="floating-controls-right">
+  <button class="sky-toggle shimmer-btn" data-theme-toggle aria-label="Toggle color scheme">
         <span class="sky-toggle-track">
           <span class="sky-star sky-star-1"></span>
           <span class="sky-star sky-star-2"></span>
@@ -137,9 +158,6 @@
           </span>
         </span>
       </button>
-  <button class="menu-fab" data-menu-fab aria-expanded="false" aria-label="Menu">
-    <span class="menu-fab-bars"><span></span><span></span><span></span></span>
-  </button>
 </div>
 
 <div class="menu-overlay" data-menu-overlay>
@@ -155,24 +173,17 @@
       <a href="/en/corporate/">For Organizations</a>
       <a href="/en/contact/">Contact</a>
     </nav>
-    <details class="lang-switch">
-        <summary>
-          🇺🇸
-          <span class="lang-switch-code">EN</span>
-        </summary>
-        <div class="lang-menu">
-          <a href="/he/gallery/" ><span class="lang-flag">🇮🇱</span> עברית</a>
-          <a href="/en/gallery/" style="color:var(--color-gold);"><span class="lang-flag">🇺🇸</span> English</a>
-          <a href="/pt/gallery/" ><span class="lang-flag">🇧🇷</span> Português</a>
-          
-        </div>
-      </details>
   </div>
 </div>
 
 <main id="main">
 <section class="page-header">
   <div class="container" style="max-width:70ch;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/en/">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <span aria-current="page">Gallery</span>
+    </nav>
     <span class="hero-eyebrow">Gallery</span>
     <h1>Moments from the roda</h1>
     <p class="lead">Photos from championships, batizados and training sessions around the country.</p>

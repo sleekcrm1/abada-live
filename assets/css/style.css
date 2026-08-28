@@ -32,19 +32,19 @@
   --bg-elevated: var(--color-white);
   --fg: var(--color-ink);
   --fg-soft: var(--color-ink-soft);
-  --accent: var(--color-gold);
+  --accent: var(--color-green);
   --accent-2: var(--color-green);
   --line: rgba(27, 58, 82, 0.12);
 
   /* Axé sticky-stack / celestial system (light mode) */
   --glass-bg: rgba(255, 255, 255, 0.85);
-  --glow-axe: rgba(212, 175, 55, 0.35);
+  --glow-axe: rgba(122, 139, 110, 0.35);
   --orb-opacity: 0.35;
   --orb-blend: multiply;
   --sun-color: #FFD873;
   --moon-color: #E8E4F0;
 
-  --stack-bg-1: color-mix(in srgb, var(--bg-elevated) 92%, var(--color-gold) 8%);
+  --stack-bg-1: color-mix(in srgb, var(--bg-elevated) 92%, var(--color-green) 8%);
   --stack-bg-2: color-mix(in srgb, var(--bg-elevated) 92%, var(--color-green) 8%);
   --stack-bg-3: color-mix(in srgb, var(--bg-elevated) 92%, var(--color-navy) 8%);
 
@@ -214,8 +214,8 @@ button { font-family: inherit; cursor: pointer; }
   position: absolute;
   inset-inline-start: -999px;
   top: 0;
-  background: var(--color-gold);
-  color: var(--color-navy);
+  background: var(--color-green);
+  color: #fff;
   padding: 10px 16px;
   z-index: 999;
   border-radius: 0 0 6px 0;
@@ -280,18 +280,51 @@ button { font-family: inherit; cursor: pointer; }
 
 @media (min-width: 640px) {
   .site-header { display: block; }
-  .floating-controls, .menu-overlay { display: none !important; }
+  .floating-controls-right, .floating-controls-left, .menu-fab-fixed, .menu-overlay { display: none !important; }
 }
 
-.floating-controls {
+/* ---------- Shimmer effect (menu button, theme toggle, language switch) ---------- */
+.shimmer-btn { position: relative; overflow: hidden; }
+.shimmer-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.65) 50%, transparent 65%);
+  transform: translateX(-160%);
+  animation: shimmer-sweep 3.2s ease-in-out infinite;
+  pointer-events: none;
+  border-radius: inherit;
+}
+[data-theme="dark"] .shimmer-btn::after {
+  background: linear-gradient(120deg, transparent 35%, rgba(212,175,55,0.55) 50%, transparent 65%);
+}
+@keyframes shimmer-sweep {
+  0%, 35% { transform: translateX(-160%); }
+  65%, 100% { transform: translateX(160%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shimmer-btn::after { animation: none; display: none; }
+}
+
+.floating-controls-right {
   position: fixed;
   bottom: 20px;
   right: 20px; /* always the physical bottom-right corner, regardless of RTL/LTR */
   z-index: 210;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 12px;
+}
+
+.floating-controls-left {
+  position: fixed;
+  bottom: 20px;
+  left: 20px; /* always the physical bottom-left corner, regardless of RTL/LTR */
+  z-index: 210;
+}
+
+.menu-fab-fixed {
+  position: fixed;
+  top: 20px;
+  right: 20px; /* always the physical top-right corner, regardless of RTL/LTR */
+  z-index: 210;
 }
 
 .menu-fab {
@@ -404,7 +437,9 @@ button { font-family: inherit; cursor: pointer; }
 .menu-overlay .lang-menu { inset-inline-end: 50%; transform: translateX(50%); }
 
 @media (min-width: 640px) {
-  .floating-controls { bottom: 28px; right: 28px; }
+  .floating-controls-right { bottom: 28px; right: 28px; }
+  .floating-controls-left { bottom: 28px; left: 28px; }
+  .menu-fab-fixed { top: 28px; right: 28px; }
   .menu-overlay-nav a { font-size: 1.5rem; }
 }
 
@@ -863,13 +898,13 @@ html:not([data-theme="dark"]) .atmo-eclipse { animation: atmo-eclipse-pulse 24s 
    for contrast over the video. */
 html:not([data-theme="dark"]) .hero-overlay { display: none; }
 
-html:not([data-theme="dark"]) .hero-copy {
-  background: rgba(15, 20, 32, 0.42);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-radius: var(--radius-lg);
-  padding: 20px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+html:not([data-theme="dark"]) .hero-copy .hero-eyebrow {
+  background: rgba(15, 20, 32, 0.55);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+html:not([data-theme="dark"]) .hero-copy h1,
+html:not([data-theme="dark"]) .hero-copy p.lead {
+  text-shadow: 0 2px 10px rgba(0,0,0,.55), 0 1px 3px rgba(0,0,0,.6);
 }
 
 .hero-cutouts { display: none; } /* shown from tablet breakpoint up */
@@ -911,6 +946,11 @@ html:not([data-theme="dark"]) .hero-copy {
   border-radius: 50px;
   margin-bottom: 14px;
 }
+html:not([data-theme="dark"]) .hero-eyebrow {
+  color: #4E5F42;
+  background: rgba(122, 139, 110, 0.16);
+  border-color: rgba(122, 139, 110, 0.4);
+}
 
 .hero h1 {
   font-size: clamp(1.7rem, 6vw, 2.4rem);
@@ -946,13 +986,27 @@ html:not([data-theme="dark"]) .hero-copy {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(60% 90% at 85% 0%, rgba(212,175,55,.16), transparent 60%);
+  background: radial-gradient(60% 90% at 85% 0%, rgba(122,139,110,.18), transparent 60%);
   pointer-events: none;
 }
 
 .page-header .hero-eyebrow { margin-bottom: 12px; }
 .page-header h1 { color: var(--color-cream); font-size: clamp(1.5rem, 5.5vw, 2.1rem); margin-bottom: 8px; }
 .page-header p.lead { color: rgba(245, 240, 232, 0.88); font-size: 0.92rem; max-width: 62ch; }
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(245, 240, 232, 0.65);
+  margin-bottom: 14px;
+}
+.breadcrumbs a { color: rgba(245, 240, 232, 0.85); transition: color 0.2s ease; }
+.breadcrumbs a:hover { color: var(--color-gold-light); }
+.breadcrumbs .breadcrumb-sep { opacity: 0.5; }
+.breadcrumbs [aria-current="page"] { color: var(--color-gold-light); }
 
 /* ========== BUTTONS ========== */
 .btn {
@@ -1041,6 +1095,27 @@ html:not([data-theme="dark"]) .hero-copy {
 .corp-photo img { width: 100%; height: 100%; object-fit: cover; }
 .corp-photo-wide { aspect-ratio: 16/9; }
 
+.corp-photo-slider {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 4px 20px 14px;
+  scrollbar-width: none;
+}
+.corp-photo-slider::-webkit-scrollbar { display: none; }
+.corp-photo-slider .corp-photo {
+  flex: 0 0 78%;
+  scroll-snap-align: center;
+}
+@media (min-width: 640px) {
+  .corp-photo-slider .corp-photo { flex-basis: 42%; }
+}
+@media (min-width: 1024px) {
+  .corp-photo-slider { padding-inline: max(20px, calc((100% - var(--container)) / 2 + 20px)); }
+  .corp-photo-slider .corp-photo { flex-basis: 30%; }
+}
+
 /* ========== SECTIONS — MOBILE ========== */
 .section { padding-block: 48px; }
 .section-tight { padding-block: 28px; }
@@ -1089,7 +1164,8 @@ html:not([data-theme="dark"]) .hero-copy {
 }
 
 /* ========== BELTS ========== */
-.belt-groups { display: grid; gap: 24px; }
+.belt-groups { display: grid; gap: 24px; overflow: hidden; }
+.belt-group { min-width: 0; overflow: hidden; }
 .belt-group h3 { font-size: 0.95rem; margin-bottom: 12px; color: var(--accent-2); }
 .belt-row { display: flex; flex-wrap: wrap; gap: 12px; }
 .belt-chip {
@@ -1245,7 +1321,14 @@ html:not([data-theme="dark"]) .hero-copy {
 .contact-info-card .row:first-of-type { border-top: none; }
 
 /* ========== FOOTER — MOBILE ========== */
-.site-footer { position: relative; background: var(--color-navy); color: rgba(245, 240, 232, 0.7); padding-block: 28px 16px; margin-top: 32px; overflow: hidden; }
+.site-footer {
+  position: relative;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--color-navy) 75%, #8FCBEF) 0%, var(--color-navy) 90px);
+  color: rgba(245, 240, 232, 0.7);
+  padding-block: 28px 16px;
+  margin-top: 32px;
+  overflow: hidden;
+}
 .footer-mobile-bg {
   position: absolute;
   inset: 0;
@@ -1273,7 +1356,7 @@ html:not([data-theme="dark"]) .hero-copy {
   flex-direction: column;
   gap: 8px;
 }
-.site-footer .brand img { width: 56px; height: 56px; }
+.site-footer .brand img { width: 72px; height: 72px; }
 .site-footer p { font-size: 0.80rem !important; margin-bottom: 10px !important; max-width: 34ch; }
 
 .footer-bottom {
@@ -1318,7 +1401,7 @@ html:not([data-theme="dark"]) .hero-copy {
 .footer-partners-logos img { height: 34px; width: auto; border-radius: 6px; background: rgba(255,255,255,0.9); padding: 3px 6px; }
 
 /* ========== BELT SWIPER (swipeable belt progression, replaces static swatches) ========== */
-.belt-swiper-wrap { margin-top: 8px; }
+.belt-swiper-wrap { margin-top: 8px; width: 100%; }
 .belt-swiper {
   display: flex;
   gap: 12px;
