@@ -676,10 +676,6 @@ button { font-family: inherit; cursor: pointer; }
   align-items: center;
   color: var(--color-cream);
   transition: opacity 0.3s ease;
-  perspective: 1200px;
-  transform-style: preserve-3d;
-  --norm-x: 0;
-  --norm-y: 0;
 }
 
 .hero-bg {
@@ -699,40 +695,27 @@ button { font-family: inherit; cursor: pointer; }
   display: none; /* video reserved for tablet+ to save mobile data */
 }
 
-.hero-bg-tilt-wrap {
+.hero-mobile-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
-  perspective: 900px;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.hero-mobile-bg {
-  position: fixed;
-  inset: -10%; /* oversized so parallax movement never reveals an edge */
-  width: 120%;
-  height: 120%;
   background-color: transparent;
   background-size: 100% auto;   /* full width, image stays fully visible/unfaded */
   background-position: center bottom;
   background-repeat: no-repeat;
-  transition: opacity 0.4s ease, transform 0.08s ease-out;
-  transform-style: preserve-3d;
-  pointer-events: none; /* background layer never blocks touches/clicks */
-  --depth: 14;
-  transform:
-    translate3d(calc(var(--norm-x) * var(--depth) * 1px), calc(var(--norm-y) * var(--depth) * 1px), 0)
-    rotateX(calc(var(--norm-y) * var(--depth) * -0.4deg))
-    rotateY(calc(var(--norm-x) * var(--depth) * 0.4deg))
-    scale(1.04);
+  transition: opacity 0.4s ease;
+  transform-origin: center bottom;
+  animation: hero-bg-tilt 9s ease-in-out infinite;
   will-change: transform;
 }
-.hero-mobile-bg.spring-back {
-  transition: transform 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+@keyframes hero-bg-tilt {
+  0%, 100% { transform: perspective(900px) rotateX(0deg) rotateY(0deg) scale(1.03); }
+  25%      { transform: perspective(900px) rotateX(0.6deg) rotateY(-0.8deg) scale(1.03); }
+  50%      { transform: perspective(900px) rotateX(-0.5deg) rotateY(0.7deg) scale(1.03); }
+  75%      { transform: perspective(900px) rotateX(0.7deg) rotateY(0.6deg) scale(1.03); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-mobile-bg { transform: none !important; transition: opacity 0.4s ease; }
+  .hero-mobile-bg { animation: none; }
 }
 
 /* ========== BACKGROUND AMBIENCE (site-wide, full) ==========
@@ -973,9 +956,6 @@ html:not([data-theme="dark"]) .hero-copy p.lead {
   gap: 6px;
   padding-block: 80px;
   width: 100%;
-  transform: translateZ(30px);
-  pointer-events: auto; /* foreground content and controls always remain clickable */
-  touch-action: pan-y;  /* allow normal vertical scroll; block pinch-zoom/horizontal swipe-nav so drag tracking isn't hijacked */
 }
 
 .hero-logo-mobile {
